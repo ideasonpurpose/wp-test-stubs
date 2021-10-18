@@ -1,7 +1,7 @@
 <?php
 
-if (!defined("JPEG_QUALITY")) {
-    define("JPEG_QUALITY", 77);
+if (!defined('JPEG_QUALITY')) {
+    define('JPEG_QUALITY', 77);
 }
 /**
  * A bunch of placeholder WordPress functions in the global namespace
@@ -13,19 +13,19 @@ if (!defined("JPEG_QUALITY")) {
 function add_action($hook, $action, $priority = 10, $args = 1)
 {
     global $actions;
-    $actions[] = ["add" => $hook, "action" => $action, "priority" => $priority, "args" => $args];
+    $actions[] = ['add' => $hook, 'action' => $action, 'priority' => $priority, 'args' => $args];
 }
 
 function remove_action($hook, $action, $priority = 10)
 {
     global $actions;
-    $actions[] = ["remove" => $hook, "action" => $action, "priority" => $priority];
+    $actions[] = ['remove' => $hook, 'action' => $action, 'priority' => $priority];
 }
 
 function add_filter($hook, $filter, $priority = 10, $args = 1)
 {
     global $filters;
-    $filters[] = ["add" => $hook, "action" => $filter, "priority" => $priority, "args" => $args];
+    $filters[] = ['add' => $hook, 'action' => $filter, 'priority' => $priority, 'args' => $args];
     // if (is_string($filter) && function_exists(__NAMESPACE__ . '\\' . $filter)) {
     //     call_user_func($filter);
     // }
@@ -37,14 +37,14 @@ function add_filter($hook, $filter, $priority = 10, $args = 1)
 function remove_filter($hook, $filter, $priority = 10)
 {
     global $filters;
-    $filters[] = ["remove" => $hook, "action" => $filter, "priority" => $priority];
+    $filters[] = ['remove' => $hook, 'action' => $filter, 'priority' => $priority];
 }
 
 function register_rest_field($type, $field, $args)
 {
     global $rest_fields;
-    $rest_fields[] = ["post_type" => $type, "field" => $field];
-    call_user_func($args["get_callback"], ["id" => 1]);
+    $rest_fields[] = ['post_type' => $type, 'field' => $field];
+    call_user_func($args['get_callback'], ['id' => 1]);
 }
 
 function shortcode_exists()
@@ -104,13 +104,17 @@ function wp_get_theme()
     return new WP_Theme();
 }
 
+function wp_add_inline_style()
+{
+}
+
 /**
  * Class stubs
  */
 
 class WP_Theme
 {
-    public function __construct($Name = "test-theme")
+    public function __construct($Name = 'test-theme')
     {
         $this->Name = $Name;
     }
@@ -125,12 +129,12 @@ class WP_Admin_Bar
 {
     public function get_node($key)
     {
-        return (object) ["id" => "my-account", "title" => "Howdy, Stella"];
+        return (object) ['id' => 'my-account', 'title' => 'Howdy, Stella'];
     }
 
     public function add_node($node)
     {
-        echo $node["title"];
+        echo $node['title'];
     }
 }
 
@@ -138,11 +142,11 @@ class WP_Image_Editor
 {
     public function generate_filename()
     {
-        return "file-optimized.jpg";
+        return 'file-optimized.jpg';
     }
     public function save()
     {
-        return ["file" => "file-optimized.jpg", "path"];
+        return ['file' => 'file-optimized.jpg', 'path'];
     }
 }
 /**
@@ -156,7 +160,7 @@ class WP_Image_Editor
  *
  * To add additional functions, add their names to the $is_ array
  */
-$is_ = ["is_admin_bar_showing", "is_admin", "is_embed", "is_user_logged_in", "wp_is_json_request"];
+$is_ = ['is_admin_bar_showing', 'is_admin', 'is_embed', 'is_user_logged_in', 'wp_is_json_request'];
 foreach ($is_ as $func) {
     eval("function {$func}() { global \${$func}; return !!\${$func}; }");
 }
@@ -166,18 +170,18 @@ foreach ($is_ as $func) {
  */
 function get_fields()
 {
-    return ["a", "b", "c"];
+    return ['a', 'b', 'c'];
 }
 
 function wp_upload_dir()
 {
     return [
-        "path" => "/Users/wp/fake/path",
-        "url" => "http://example.com/fake/path",
-        "subdir" => "/fake",
-        "basedir" => "/fake/path",
-        "baseurl" => "http://example.com/fake/path",
-        "error" => "",
+        'path' => '/Users/wp/fake/path',
+        'url' => 'http://example.com/fake/path',
+        'subdir' => '/fake',
+        'basedir' => '/fake/path',
+        'baseurl' => 'http://example.com/fake/path',
+        'error' => '',
     ];
 }
 
