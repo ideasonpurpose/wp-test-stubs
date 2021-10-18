@@ -1,0 +1,19 @@
+{
+    "name": "ideasonpurpose/wp-test-stubs",
+    "description": "A simple collection of stubs and doubles for testing WordPress code.",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "IdeasOnPurpose\\WP\\Test\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Joe Maller",
+            "email": "joe@ideasonpurpose.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
