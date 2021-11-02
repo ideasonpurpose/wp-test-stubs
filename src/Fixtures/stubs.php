@@ -7,38 +7,6 @@ if (!defined('JPEG_QUALITY')) {
  * A bunch of placeholder WordPress functions in the global namespace
  */
 
-/**
- * Stub a bunch of miscellaneous WordPress global functions
- */
-function add_action($hook, $action, $priority = 10, $args = 1)
-{
-    global $actions;
-    $actions[] = ['add' => $hook, 'action' => $action, 'priority' => $priority, 'args' => $args];
-}
-
-function remove_action($hook, $action, $priority = 10)
-{
-    global $actions;
-    $actions[] = ['remove' => $hook, 'action' => $action, 'priority' => $priority];
-}
-
-function add_filter($hook, $filter, $priority = 10, $args = 1)
-{
-    global $filters;
-    $filters[] = ['add' => $hook, 'action' => $filter, 'priority' => $priority, 'args' => $args];
-    // if (is_string($filter) && function_exists(__NAMESPACE__ . '\\' . $filter)) {
-    //     call_user_func($filter);
-    // }
-    // if ($filter instanceof Closure) {
-    //     call_user_func($filter);
-    // }
-}
-
-function remove_filter($hook, $filter, $priority = 10)
-{
-    global $filters;
-    $filters[] = ['remove' => $hook, 'action' => $filter, 'priority' => $priority];
-}
 
 function register_rest_field($type, $field, $args)
 {
@@ -55,9 +23,16 @@ function add_shortcode($code, $function)
 {
 }
 
+/**
+ * This returns a matching value from the global $options array or null if no $options[$name] was not set
+ * @param mixed $name
+ * @return mixed
+ */
 function get_option($name)
 {
-    return $name;
+    global $options;
+    return $options[$name] ?? null;
+    // return $name;
 }
 
 function update_option($opt, $val)

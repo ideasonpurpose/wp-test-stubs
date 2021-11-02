@@ -16,6 +16,17 @@ The `add_action`, `remove_action`, `add_filter` and `remove_filter` functions re
 
 Any functions which need testing should be public and capable of being tested independently.
 
+### `all_added_actions` and `all_added_filters` helper functions
+
+These two helper functions return a simplified view of the global `$actions` and `$filters` arrays with each added hook represented as two-item, hook/action array: `['hook_name', 'method_name']`. This can be used with PHPUnit like this:
+
+```php
+
+$this->assertContains(['hook_name', 'method_name'], all_added_filters());
+```
+
+Two parallel functions, `all_removed_actions` and `all_removed_filters` can be used the same way.
+
 ## is\_{$something} functions
 
 All of these functions are mocked from the same pattern: Each will return the value of a global with the same name as the function. Since these functions are often used for control flow, being able to easily toggle their values makes it easy to test alternate pathways through System Under Test code without having to refactor.
