@@ -7,7 +7,6 @@ if (!defined('JPEG_QUALITY')) {
  * A bunch of placeholder WordPress functions in the global namespace
  */
 
-
 function register_rest_field($type, $field, $args)
 {
     global $rest_fields;
@@ -21,6 +20,12 @@ function shortcode_exists()
 
 function add_shortcode($code, $function)
 {
+}
+
+function flush_rewrite_rules(bool $hard = true)
+{
+    global $flush_rewrite_rules;
+    $flush_rewrite_rules = $hard;
 }
 
 /**
