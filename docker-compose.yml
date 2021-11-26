@@ -1,8 +1,7 @@
 services:
-  # Utility service for running composer commands. Useful for adding tools from packagist
-  # Image from: https://hub.docker.com/_/composer
+  # https://hub.docker.com/_/composer
   composer:
-    image: composer:2.1.6
+    image: composer:2.1.12
     user: "${UID:-1000}:${GID:-1000}"
     environment:
       COMPOSER_HOME: /.composer
@@ -10,12 +9,3 @@ services:
       - ./:/app
       - ~/.composer:/.composer
     command: install
-
-  test:
-    build: .
-    user: "${UID:-1000}:${GID:-1000}"
-    volumes:
-      - ./:/app
-    working_dir: /app
-    entrypoint: []
-    command: vendor/bin/phpunit
