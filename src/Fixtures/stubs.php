@@ -14,12 +14,18 @@ function register_rest_field($type, $field, $args)
     call_user_func($args['get_callback'], ['id' => 1]);
 }
 
-function shortcode_exists()
+function shortcode_exists($code)
 {
+    global $shortcodes;
+    $shortcodes = $shortcodes ?? [];
+    return in_array($code, $shortcodes);
 }
 
 function add_shortcode($code, $function)
 {
+    global $shortcodes;
+    $shortcodes = $shortcodes ?? [];
+    $shortcodes[] = $code;
 }
 
 function flush_rewrite_rules(bool $hard = true)
@@ -64,6 +70,11 @@ function get_post_types()
 function sanitize_title($title)
 {
     return $title;
+}
+
+function antispambot($email)
+{
+    return "antispambot_{$email}_antispambot";
 }
 
 function remove_meta_box()
