@@ -51,8 +51,15 @@ function update_option($opt, $val)
 }
 
 /**
+ * Set `$post_meta` to control output in tests.
+ *
+ *
  * The WordPress function returns arrays or strings or arrays of arrays of strings.
  * Use the global $post_meta variable to
+ *
+ * @global $post_meta
+ * @return mixed
+ *
  * @link https://developer.wordpress.org/reference/functions/get_post_meta/
  */
 function get_post_meta()
@@ -61,10 +68,42 @@ function get_post_meta()
     return $post_meta;
 }
 
-function get_post_types()
+/**
+ * Set `$post_types` to control output in tests.
+ *
+ * The WordPress function returns arrays or strings or arrays of arrays of strings.
+ * Use the global $post_meta variable to
+ *
+ * TODO: This should also be able to return an array of WP_Post_Type objects
+ *
+ * @global $post_types
+ * @return string[]
+ * @link https://developer.wordpress.org/reference/functions/get_post_types/
+ */
+function get_post_types($args = [], $output = 'names', $operator = 'and')
 {
     global $post_types;
     return (array) $post_types;
+}
+
+/**
+ * Set the $template_directory var for testing.
+ *
+ * The WordPress function returns a string containing the path to
+ * the current theme's template directory. The Wordpress function
+ * DOES NOT output a trailing slash
+ *
+ * This stub will strip trailing slashes from the global $template_directory
+ *
+ * @global string $template_directory
+ * @return string Value of $template_directory or the current working directory
+ * @link https://developer.wordpress.org/reference/functions/get_template_directory/
+ */
+function get_template_directory()
+{
+    global $template_directory;
+    $template_dir = $template_directory ?? __DIR__;
+    return rtrim($template_dir, '/');
 }
 
 function sanitize_title($title)
@@ -83,11 +122,6 @@ function remove_meta_box()
 
 function remove_menu_page()
 {
-}
-
-function get_template_directory()
-{
-    return __DIR__;
 }
 
 function wp_get_theme()
@@ -118,14 +152,21 @@ class WP_Theme
 
 class WP_Admin_Bar
 {
-    public function get_node($key)
-    {
-        return (object) ['id' => 'my-account', 'title' => 'Howdy, Stella'];
-    }
-
+    public $nodes = [];
+    /**
+     *
+     * @param array $node This should include an 'id' property
+     * @return void
+     */
     public function add_node($node)
     {
-        echo $node['title'];
+        $this->nodes[$node['id']] = (object) $node;
+        // echo $node['title'];
+    }
+    public function get_node($key)
+    {
+        return (object) $this->nodes[$key] ?? false;
+        //  ['id' => 'my-account', 'title' => 'Howdy, Stella'];
     }
 }
 
