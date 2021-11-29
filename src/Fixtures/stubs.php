@@ -174,6 +174,16 @@ function remove_meta_box(string $id, $screen, $context)
     ];
 }
 
+/**
+ * Return the global $post_thumbnail_id if set, otherwise return the $id arg
+ * @link https://developer.wordpress.org/reference/functions/get_post_thumbnail_id/
+ */
+function get_post_thumbnail_id($id)
+{
+    global $post_thumbnail_id;
+    return $post_thumbnail_id ?? $id;
+}
+
 function sanitize_title($title)
 {
     return $title;
@@ -236,6 +246,12 @@ function remove_menu_page($menu_slug)
 function wp_get_theme()
 {
     return new WP_Theme();
+}
+
+function wp_get_attachment_image_src($attachment_id, $size = 'thumbnail', $icon = false)
+{
+    global $wp_get_attachment_image_src;
+    return $wp_get_attachment_image_src ?? ['placeholder/image.jpg', 1024, 768, true];
 }
 
 function wp_add_inline_style()

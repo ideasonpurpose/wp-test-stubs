@@ -14,11 +14,13 @@
 $is_ = [
     'is_admin_bar_showing',
     'is_admin',
+    'is_archive',
     'is_embed',
     'is_front_page',
     'is_home',
     'is_single',
     'is_user_logged_in',
+    'has_post_thumbnail',
     'wp_is_json_request',
 ];
 foreach ($is_ as $func) {
