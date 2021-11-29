@@ -43,7 +43,31 @@ function get_option($name)
 {
     global $options;
     return $options[$name] ?? null;
-    // return $name;
+}
+function post_type_supports($post_type, $feature)
+{
+    global $post_type_supports;
+    return $post_type_supports ?? false;
+}
+
+/**
+ * @link https://developer.wordpress.org/reference/functions/add_post_type_support/
+ */
+function add_post_type_support($post_type, $feature, $args)
+{
+    global $post_type_support;
+    $post_type_support = $post_type_support ?? [];
+    $post_type_support[] = ['add' => $feature, 'post_type' => $post_type, $args => $args];
+}
+
+/**
+ * @link https://developer.wordpress.org/reference/functions/remove_post_type_support/
+ */
+function remove_post_type_support($post_type, $feature)
+{
+    global $post_type_support;
+    $post_type_support = $post_type_support ?? [];
+    $post_type_support[] = ['remove' => $feature, 'post_type' => $post_type];
 }
 
 function update_option($opt, $val)
@@ -106,6 +130,50 @@ function get_template_directory()
     return rtrim($template_dir, '/');
 }
 
+/**
+ * @link https://developer.wordpress.org/reference/functions/add_meta_box/
+ */
+function add_meta_box(
+    string $id,
+    string $title,
+    callable $callback,
+    $screen = null,
+    $context = 'advanced',
+    $priority = 'default',
+    $callback_args = null
+) {
+    global $meta_boxes;
+    $meta_boxes = $meta_boxes ?? [];
+    $meta_boxes[] = [
+        'add' => $id,
+        'id' => $id,
+        'title' => $title,
+        'callback' => $callback,
+        'screen' => $screen,
+        'context' => $context,
+        'priority' => $priority,
+        'callback_args' => $callback_args,
+    ];
+}
+
+/**
+ *
+ * @return void
+ *
+ * @link https://developer.wordpress.org/reference/functions/remove_meta_box/
+ */
+function remove_meta_box(string $id, $screen, $context)
+{
+    global $meta_boxes;
+    $meta_boxes = $meta_boxes ?? [];
+    $meta_boxes[] = [
+        'remove' => $id,
+        'id' => $id,
+        'screen' => $screen,
+        'context' => $context,
+    ];
+}
+
 function sanitize_title($title)
 {
     return $title;
@@ -116,12 +184,53 @@ function antispambot($email)
     return "antispambot_{$email}_antispambot";
 }
 
-function remove_meta_box()
-{
-}
+/**
+ * Records calls to `add_menu_page` in the global $menu_pages array.
 
-function remove_menu_page()
+ * @param string $page_title
+ * @param string $menu_title
+ * @param string $capability
+ * @param string $menu_slug
+ * @param callable|string $function
+ * @param string $icon_url
+ * @param int|null $position
+ * @return void
+ * @link https://developer.wordpress.org/reference/functions/add_menu_page/
+ */
+function add_menu_page(
+    $page_title,
+    $menu_title,
+    $capability,
+    $menu_slug,
+    $function = '',
+    $icon_url = '',
+    $position = null
+) {
+    global $menu_pages;
+    $menu_pages = $menu_pages ?? [];
+    $menu_pages[] = [
+        'add' => $menu_slug,
+        'page_title' => $page_title,
+        'menu_title' => $menu_title,
+        'capability' => $capability,
+        'menu_slug' => $menu_slug,
+        'function' => $function,
+        'icon_url' => $icon_url,
+        'position' => $position,
+    ];
+}
+/**
+ * Records calls to `remove_menu_page` in the global $menu_pages array.
+ *
+ * @link https://developer.wordpress.org/reference/functions/remove_menu_page/
+ * @param mixed $menu_slug
+ * @return void
+ */
+function remove_menu_page($menu_slug)
 {
+    global $menu_pages;
+    $menu_pages = $menu_pages ?? [];
+    $menu_pages[] = ['remove' => $menu_slug];
 }
 
 function wp_get_theme()
@@ -180,21 +289,6 @@ class WP_Image_Editor
     {
         return ['file' => 'file-optimized.jpg', 'path'];
     }
-}
-/**
- * All WordPress is_{$name} test functions are mocked using the same pattern:
- * They return the value of a global with the same name, allowing them
- * to be easily toggled in tests.
- *
- * To toggle any function, set a value like this:
- *    global $is_admin;
- *    $is_admin = true;
- *
- * To add additional functions, add their names to the $is_ array
- */
-$is_ = ['is_admin_bar_showing', 'is_admin', 'is_embed', 'is_user_logged_in', 'wp_is_json_request'];
-foreach ($is_ as $func) {
-    eval("function {$func}() { global \${$func}; return !!\${$func}; }");
 }
 
 /**

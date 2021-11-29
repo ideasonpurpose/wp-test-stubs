@@ -19,12 +19,6 @@ function add_filter($hook, $filter, $priority = 10, $args = 1)
 {
     global $filters;
     $filters[] = ['add' => $hook, 'action' => $filter, 'priority' => $priority, 'args' => $args];
-    // if (is_string($filter) && function_exists(__NAMESPACE__ . '\\' . $filter)) {
-    //     call_user_func($filter);
-    // }
-    // if ($filter instanceof Closure) {
-    //     call_user_func($filter);
-    // }
 }
 
 function remove_filter($hook, $filter, $priority = 10)
