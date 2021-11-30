@@ -1,6 +1,6 @@
 {
   "name": "wp-test-stubs",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Simple collection of stubs and doubles for testing WordPress code",
   "keywords": [
     "phpunit",
