@@ -4,7 +4,8 @@
   "description": "Simple collection of stubs and doubles for testing WordPress code",
   "keywords": [
     "phpunit",
-    "wordpress"
+    "wordpress",
+    "Ideas On Purpose"
   ],
   "homepage": "https://github.com/ideasonpurpose/wp-test-stubs#readme",
   "bugs": {
@@ -15,8 +16,10 @@
     "url": "git+https://github.com/ideasonpurpose/wp-test-stubs.git"
   },
   "license": "MIT",
-  "author": "Joe Maller <joe@ideasonpurpose.com>",
-  "main": "index.js",
+  "author": "Ideas On Purpose (https://www.ideasonpurpose.com)",
+  "contributors": [
+    "Joe Maller <joe@ideasonpurpose.com>"
+  ],
   "scripts": {
     "composer": "npm run composer:install",
     "composer:install": "docker-compose run --rm composer",
@@ -59,5 +62,10 @@
   "auto-changelog": {
     "package": true,
     "backfillLimit": 7
+  },
+  "version-everything": {
+    "files": [
+      "README.md"
+    ]
   }
 }
