@@ -28,6 +28,13 @@ function add_shortcode($code, $function)
     $shortcodes[] = $code;
 }
 
+/**
+ * @link https://developer.wordpress.org/reference/functions/add_rewrite_rule/
+ */
+function add_rewrite_rule()
+{
+}
+
 function flush_rewrite_rules(bool $hard = true)
 {
     global $flush_rewrite_rules;
