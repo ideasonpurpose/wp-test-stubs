@@ -70,10 +70,6 @@ function remove_post_type_support($post_type, $feature)
     $post_type_support[] = ['remove' => $feature, 'post_type' => $post_type];
 }
 
-function update_option($opt, $val)
-{
-}
-
 /**
  * Set `$post_meta` to control output in tests.
  *
@@ -157,9 +153,6 @@ function add_meta_box(
 }
 
 /**
- *
- * @return void
- *
  * @link https://developer.wordpress.org/reference/functions/remove_meta_box/
  */
 function remove_meta_box(string $id, $screen, $context)
@@ -245,79 +238,26 @@ function remove_menu_page($menu_slug)
 
 function wp_get_theme()
 {
-    return new WP_Theme();
+    global $wp_get_theme;
+    return $wp_get_theme ?? new WP_Theme();
 }
 
+/**
+ * @link https://developer.wordpress.org/reference/functions/wp_get_attachment_image_src/
+ */
 function wp_get_attachment_image_src($attachment_id, $size = 'thumbnail', $icon = false)
 {
     global $wp_get_attachment_image_src;
     return $wp_get_attachment_image_src ?? ['placeholder/image.jpg', 1024, 768, true];
 }
 
-function wp_add_inline_style()
-{
-}
-
 /**
- * Class stubs
+ * @link https://developer.wordpress.org/reference/functions/wp_upload_dir/
  */
-
-class WP_Theme
-{
-    public function __construct($Name = 'test-theme')
-    {
-        $this->Name = $Name;
-    }
-
-    public function get($key)
-    {
-        return $this->{$key};
-    }
-}
-
-class WP_Admin_Bar
-{
-    public $nodes = [];
-    /**
-     *
-     * @param array $node This should include an 'id' property
-     * @return void
-     */
-    public function add_node($node)
-    {
-        $this->nodes[$node['id']] = (object) $node;
-        // echo $node['title'];
-    }
-    public function get_node($key)
-    {
-        return (object) $this->nodes[$key] ?? false;
-        //  ['id' => 'my-account', 'title' => 'Howdy, Stella'];
-    }
-}
-
-class WP_Image_Editor
-{
-    public function generate_filename()
-    {
-        return 'file-optimized.jpg';
-    }
-    public function save()
-    {
-        return ['file' => 'file-optimized.jpg', 'path'];
-    }
-}
-
-/**
- * ACF Pro
- */
-function get_fields()
-{
-    return ['a', 'b', 'c'];
-}
-
 function wp_upload_dir()
 {
-    return [
+    global $wp_upload_dir;
+    return $wp_upload_dir ?? [
         'path' => '/Users/wp/fake/path',
         'url' => 'http://example.com/fake/path',
         'subdir' => '/fake',
@@ -333,6 +273,32 @@ function wp_get_image_editor()
     return $wp_get_image_editor;
 }
 
+/**
+ * @link https://developer.wordpress.org/reference/functions/update_attached_file/
+ */
 function update_attached_file()
 {
+}
+
+/**
+ * @link https://developer.wordpress.org/reference/functions/update_option/
+ */
+function update_option()
+{
+}
+
+/**
+ * @link https://developer.wordpress.org/reference/functions/wp_add_inline_style/
+ */
+function wp_add_inline_style()
+{
+}
+
+/**
+ * @link https://developer.wordpress.org/reference/functions/wp_get_current_user/
+ */
+function wp_get_current_user()
+{
+    global $wp_get_current_user;
+    return $wp_get_current_user ?? new WP_User();
 }
