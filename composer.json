@@ -10,10 +10,13 @@
     },
     "authors": [
         {
+            "name": "Ideas On Purpose",
+            "website": "https://www.ideasonpurpose.com"
+        },
+        {
             "name": "Joe Maller",
             "email": "joe@ideasonpurpose.com"
         }
     ],
-    "minimum-stability": "dev",
-    "require": {}
+    "minimum-stability": "dev"
 }
