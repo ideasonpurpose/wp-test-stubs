@@ -309,3 +309,9 @@ function wp_get_current_user()
     global $wp_get_current_user;
     return $wp_get_current_user ?? new WP_User();
 }
+
+function error_log($err){
+    global $error_log;
+    $error_log = $error_log ?? [];
+    $error_log[] = $err;
+}
