@@ -4,6 +4,9 @@
 
 #### Version 0.1.0
 
+[![Packagist](https://badgen.net/packagist/v/ideasonpurpose/wp-test-stubs)](https://packagist.org/packages/ideasonpurpose/wp-test-stubs)
+[![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
+
 A simple collection of stubs and doubles for testing WordPress code.
 
 Unlike [Brain Monkey](https://brain-wp.github.io/BrainMonkey/) or [WP_Mock](https://github.com/10up/wp_mock), this is a very dumb library.
