@@ -14,6 +14,7 @@ class Stubs
         require_once 'Fixtures/is_.php';
         require_once 'Fixtures/stubs.php';
         require_once 'Fixtures/hooks.php';
+        require_once 'Fixtures/query_var.php';
         require_once 'Fixtures/acf.php';
     }
 }
