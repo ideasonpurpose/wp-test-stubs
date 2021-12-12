@@ -310,8 +310,13 @@ function wp_get_current_user()
     return $wp_get_current_user ?? new WP_User();
 }
 
-function error_log($err){
-    global $error_log;
-    $error_log = $error_log ?? [];
-    $error_log[] = $err;
-}
+/**
+ * TODO: Implement this in the calling namespace
+ * @param mixed $err
+ * @return void
+ */
+// function error_log($err){
+//     global $error_log;
+//     $error_log = $error_log ?? [];
+//     $error_log[] = $err;
+// }
