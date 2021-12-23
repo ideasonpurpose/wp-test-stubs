@@ -31,10 +31,29 @@ function add_shortcode($code, $function)
 /**
  * @link https://developer.wordpress.org/reference/functions/add_rewrite_rule/
  */
-function add_rewrite_rule()
+function add_rewrite_rule($regex, $query, $after = 'bottom')
 {
+    global $rewrite_rules;
+    $rewrite_rules[] = ['regex' => $regex, 'query' => $query, 'after' => $after];
 }
 
+/**
+ * Similar to all_added_{actions|filters}, this returns an array of rewrite_rules
+ * organized by top/bottom.
+ */
+function all_rewrite_rules()
+{
+    global $rewrite_rules;
+    $rules = $rewrite_rules ?? [];
+    return array_reduce(
+        $rules,
+        function ($carry, $item) {
+            $carry[$item['after']][] = [$item['regex'], $item['query']];
+            return $carry;
+        },
+        ['top' => [], 'bottom' => []]
+    );
+}
 function flush_rewrite_rules(bool $hard = true)
 {
     global $flush_rewrite_rules;
@@ -51,6 +70,16 @@ function get_option($name)
     global $options;
     return $options[$name] ?? null;
 }
+
+/**
+ * @link https://developer.wordpress.org/reference/functions/get_search_query/
+ */
+function get_search_query()
+{
+    global $search_query;
+    return $search_query ?? '';
+}
+
 function post_type_supports($post_type, $feature)
 {
     global $post_type_supports;
@@ -131,6 +160,19 @@ function get_template_directory()
     global $template_directory;
     $template_dir = $template_directory ?? __DIR__;
     return rtrim($template_dir, '/');
+}
+
+/**
+ * $scheme is ignored for now
+ * TODO: Support $scheme
+ * @link https://developer.wordpress.org/reference/functions/home_url/
+ */
+function home_url($path = '', $scheme = null)
+{
+    global $home_url;
+    $home_url = $home_url ?? 'http://example.com';
+    return rtrim($home_url, '/') . '/' . ltrim($path, '/');
+    return get_home_url(null, $path, $scheme);
 }
 
 /**
@@ -278,6 +320,20 @@ function wp_get_image_editor()
 {
     global $wp_get_image_editor;
     return $wp_get_image_editor;
+}
+
+/**
+ * @link https://developer.wordpress.org/reference/functions/wp_redirect/
+ */
+function wp_redirect($location, $status = 302, $x_redirect_by = 'WordPress')
+{
+    global $wp_redirect;
+    $wp_redirect = $wp_redirect ?? [];
+    $wp_redirect[] = [
+        'location' => $location,
+        'status' => $status,
+        'x_redirect_by' => $x_redirect_by,
+    ];
 }
 
 /**

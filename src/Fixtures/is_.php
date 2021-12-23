@@ -18,6 +18,8 @@ $is_ = [
     'is_embed',
     'is_front_page',
     'is_home',
+    'is_main_query',
+    'is_search',
     'is_single',
     'is_user_logged_in',
     'has_post_thumbnail',

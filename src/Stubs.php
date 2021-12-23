@@ -16,5 +16,6 @@ class Stubs
         require_once 'Fixtures/hooks.php';
         require_once 'Fixtures/query_var.php';
         require_once 'Fixtures/acf.php';
+        require_once 'Fixtures/copies.php';
     }
 }
