@@ -14,6 +14,26 @@ function register_rest_field($type, $field, $args)
     call_user_func($args['get_callback'], ['id' => 1]);
 }
 
+/**
+ * @link https://developer.wordpress.org/reference/functions/register_post_type/
+ */
+function register_post_type($post_type, $args = [])
+{
+    global $post_types;
+    $post_types = $post_types ?? [];
+    $post_types[] = $post_type;
+}
+
+/**
+ * @link https://developer.wordpress.org/reference/functions/register_taxonomy/
+ */
+function register_taxonomy($taxonomy, $object_type, $args = [])
+{
+    global $taxonomies;
+    $taxonomies = $taxonomies ?? [];
+    $taxonomies[] = $taxonomy;
+}
+
 function shortcode_exists($code)
 {
     global $shortcodes;
@@ -353,8 +373,12 @@ function update_option()
 /**
  * @link https://developer.wordpress.org/reference/functions/wp_add_inline_style/
  */
-function wp_add_inline_style()
+function wp_add_inline_style($handle, $data)
 {
+    global $inline_styles;
+
+    $inline_styles = $inline_styles ?? [];
+    $inline_styles[] = ['handle' => $handle, 'data' => $data];
 }
 
 /**
