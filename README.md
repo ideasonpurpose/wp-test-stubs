@@ -40,3 +40,16 @@ To toggle any `is_` function, set a value like this:
 global $is_admin;
 $is_admin = true;
 ```
+
+## Local Development
+To have Composer check out a live clone of this repo instead of downloading an archive from Packagist, add this a repositories key to the root of your project's **composer.json** file:
+```json
+{
+    "repositories": [
+    {
+      "type": "git",
+      "url": "https://github.com/ideasonpurpose/wp-test-stubs"
+    }
+  ]
+}
+```
