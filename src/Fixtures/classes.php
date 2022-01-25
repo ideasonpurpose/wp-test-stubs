@@ -69,6 +69,41 @@ class WP_User
 }
 
 /**
+ * @link https://developer.wordpress.org/reference/classes/wp_taxonomy/
+ */
+class WP_Taxonomy
+{
+    public $term_id = 1;
+    public $label = 'Taxonomy label';
+    public $name = 'taxonomy-name';
+
+    public function __construct()
+    {
+        $this->labels = (object) ['all_items' => 'All items', 'no_terms' => 'No terms'];
+    }
+}
+
+/**
+ * @link https://developer.wordpress.org/reference/classes/wp_term/
+ */
+class WP_Term
+{
+    public $term_id = 1;
+
+    public function __construct($name = 'Dog', $slug = 'dog', $count = 4)
+    {
+        $this->name = $name;
+        $this->slug = $slug;
+        $this->count = $count;
+    }
+
+    public function to_array()
+    {
+        return (array) $this;
+    }
+}
+
+/**
  * Mocked is_* functions will pass through and return the global value
  */
 class WP_Query

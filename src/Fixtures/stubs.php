@@ -34,6 +34,16 @@ function register_taxonomy($taxonomy, $object_type, $args = [])
     $taxonomies[] = $taxonomy;
 }
 
+/**
+ *
+ */
+function register_taxonomy_for_object_type($taxonomy, $object_type)
+{
+    global $register_taxonomy_for_object_type;
+    $register_taxonomy_for_object_type = $register_taxonomy_for_object_type ?? [];
+    $register_taxonomy_for_object_type[] = [$taxonomy, $object_type];
+}
+
 function shortcode_exists($code)
 {
     global $shortcodes;
@@ -182,6 +192,25 @@ function get_template_directory()
     return rtrim($template_dir, '/');
 }
 
+/**
+ *
+ * @link https://developer.wordpress.org/reference/functions/get_taxonomy/
+ */
+function get_taxonomy(string $taxonomy)
+{
+    global $taxonomies;
+    return $taxonomies[$taxonomy] ?? false;
+}
+
+/**
+ * @link https://developer.wordpress.org/reference/functions/get_terms/
+ */
+function get_terms(array|string $args = [], array|string $deprecated = '')
+{
+    global $get_terms;
+    $get_terms = $get_terms ?? [new WP_Term(), new WP_Term()];
+    return $get_terms;
+}
 /**
  * $scheme is ignored for now
  * TODO: Support $scheme
