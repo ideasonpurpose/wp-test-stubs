@@ -74,11 +74,11 @@ class WP_User
 class WP_Taxonomy
 {
     public $term_id = 1;
-    public $label = 'Taxonomy label';
-    public $name = 'taxonomy-name';
 
-    public function __construct()
+    public function __construct($name = 'animal', $label = 'Animals')
     {
+        $this->name = $name;
+        $this->label = $label;
         $this->labels = (object) ['all_items' => 'All items', 'no_terms' => 'No terms'];
     }
 }
