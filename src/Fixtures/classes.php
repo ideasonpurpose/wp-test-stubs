@@ -75,10 +75,12 @@ class WP_Taxonomy
 {
     public $term_id = 1;
 
-    public function __construct($name = 'animal', $label = 'Animals')
+    public function __construct($name = 'animal', $label = 'Animals', $query_var = null, $hierarchical= true)
     {
         $this->name = $name;
         $this->label = $label;
+        $this->query_var = $query_var ?? $name;
+        $this->hierarchical = $hierarchical;
         $this->labels = (object) ['name' => $name, 'all_items' => 'All items', 'no_terms' => 'No terms'];
     }
 }
@@ -90,11 +92,14 @@ class WP_Term
 {
     public $term_id = 1;
 
-    public function __construct($name = 'Dog', $slug = 'dog', $count = 4)
+    public function __construct($name = 'Dog', $slug = 'dog', $count = 4, $args = [])
     {
         $this->name = $name;
         $this->slug = $slug;
         $this->count = $count;
+        foreach ($args as $key => $value) {
+            $this->{$key} = $value;
+        }
     }
 
     public function to_array()

@@ -386,6 +386,16 @@ function wp_redirect($location, $status = 302, $x_redirect_by = 'WordPress')
 }
 
 /**
+ * @link https://developer.wordpress.org/reference/functions/wp_dropdown_categories/
+ */
+function wp_dropdown_categories($args)
+{
+    global $wp_dropdown_categories;
+    $wp_dropdown_categories = $wp_dropdown_categories ?? [];
+    $wp_dropdown_categories[] = $args;
+}
+
+/**
  * @link https://developer.wordpress.org/reference/functions/update_attached_file/
  */
 function update_attached_file()

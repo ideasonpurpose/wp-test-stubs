@@ -18,5 +18,8 @@
             "email": "joe@ideasonpurpose.com"
         }
     ],
-    "minimum-stability": "dev"
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=8.0.0"
+    }
 }
