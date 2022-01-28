@@ -79,7 +79,7 @@ class WP_Taxonomy
     {
         $this->name = $name;
         $this->label = $label;
-        $this->labels = (object) ['all_items' => 'All items', 'no_terms' => 'No terms'];
+        $this->labels = (object) ['name' => $name, 'all_items' => 'All items', 'no_terms' => 'No terms'];
     }
 }
 
@@ -111,5 +111,19 @@ class WP_Query
     public function __call($name, $args)
     {
         return call_user_func_array($name, $args);
+    }
+}
+
+/**
+ * Mocked is_* functions will pass through and return the global value
+ */
+class WP_Post_Type
+{
+    public function __construct($name = 'page', $label = 'Pages')
+    {
+        $this->name = $name;
+        $this->label = $label;
+
+        $this->labels = (object) ['name' => $name, 'all_items' => 'All items', 'no_terms' => 'No terms'];
     }
 }
