@@ -44,6 +44,26 @@ function register_taxonomy_for_object_type($taxonomy, $object_type)
     $register_taxonomy_for_object_type[] = [$taxonomy, $object_type];
 }
 
+/**
+ * @link https://developer.wordpress.org/reference/functions/register_activation_hook/
+ */
+function register_activation_hook($file, $callback)
+{
+    global $activation_hooks;
+    $activation_hooks = $activation_hooks ?? [];
+    $activation_hooks[] = ['hook' => 'activation', 'file' => $file, 'callback' => $callback];
+}
+
+/**
+ * @link https://developer.wordpress.org/reference/functions/register_deactivation_hook/
+ */
+function register_deactivation_hook($file, $callback)
+{
+    global $activation_hooks;
+    $activation_hooks = $activation_hooks ?? [];
+    $activation_hooks[] = ['hook' => 'deactivation', 'file' => $file, 'callback' => $callback];
+}
+
 function shortcode_exists($code)
 {
     global $shortcodes;
@@ -406,6 +426,13 @@ function update_attached_file()
  * @link https://developer.wordpress.org/reference/functions/update_option/
  */
 function update_option()
+{
+}
+
+/**
+ * @link https://developer.wordpress.org/reference/functions/update_user_meta/
+ */
+function update_user_meta()
 {
 }
 
