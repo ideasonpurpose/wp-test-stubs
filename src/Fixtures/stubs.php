@@ -213,6 +213,16 @@ function get_template_directory()
 }
 
 /**
+ * @link https://developer.wordpress.org/reference/functions/get_rest_url
+ */
+function get_rest_url($blog_id = null, $path = '/', $scheme = 'rest')
+{
+    global $rest_url;
+    $rest_url ??= 'https://example.com/wp-json/'; // plain permalink version is  http://example.com/index.php?rest_route=
+    return rtrim($rest_url, '/') . $path;
+}
+
+/**
  *
  * @link https://developer.wordpress.org/reference/functions/get_taxonomy/
  */
@@ -231,6 +241,7 @@ function get_terms(array|string $args = [], array|string $deprecated = '')
     $get_terms = $get_terms ?? [new WP_Term(), new WP_Term()];
     return $get_terms;
 }
+
 /**
  * $scheme is ignored for now
  * TODO: Support $scheme
@@ -239,9 +250,9 @@ function get_terms(array|string $args = [], array|string $deprecated = '')
 function home_url($path = '', $scheme = null)
 {
     global $home_url;
-    $home_url = $home_url ?? 'http://example.com';
+    $home_url = $home_url ?? 'https://example.com';
     return rtrim($home_url, '/') . '/' . ltrim($path, '/');
-    return get_home_url(null, $path, $scheme);
+    // return get_home_url(null, $path, $scheme);
 }
 
 /**
@@ -454,6 +465,28 @@ function wp_get_current_user()
 {
     global $wp_get_current_user;
     return $wp_get_current_user ?? new WP_User();
+}
+
+/**
+ * @link  https://developer.wordpress.org/reference/functions/add_query_arg/
+ */
+function add_query_arg(...$args)
+{
+    $params = [];
+    if (is_array($args[0])) {
+        $params = $args[0];
+        $uri = $args[1];
+    } else {
+        $params[$args[0]] = $args[1];
+        $url = $args[2];
+    }
+    $url ??= 'https://example.com';
+
+    $glue = strpos($url, '?') ? '&' : '?';
+    foreach ($params as $key => $value) {
+        $url .= "{$glue}{$key}={$value}";
+    }
+    return $url;
 }
 
 /**
