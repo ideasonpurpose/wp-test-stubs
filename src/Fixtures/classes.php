@@ -75,13 +75,21 @@ class WP_Taxonomy
 {
     public $term_id = 1;
 
-    public function __construct($name = 'animal', $label = 'Animals', $query_var = null, $hierarchical= true)
-    {
+    public function __construct(
+        $name = 'animal',
+        $label = 'Animals',
+        $query_var = null,
+        $hierarchical = true
+    ) {
         $this->name = $name;
         $this->label = $label;
         $this->query_var = $query_var ?? $name;
         $this->hierarchical = $hierarchical;
-        $this->labels = (object) ['name' => $name, 'all_items' => 'All items', 'no_terms' => 'No terms'];
+        $this->labels = (object) [
+            'name' => $name,
+            'all_items' => 'All items',
+            'no_terms' => 'No terms',
+        ];
     }
 }
 
@@ -129,6 +137,38 @@ class WP_Post_Type
         $this->name = $name;
         $this->label = $label;
 
-        $this->labels = (object) ['name' => $name, 'all_items' => 'All items', 'no_terms' => 'No terms'];
+        $this->labels = (object) [
+            'name' => $name,
+            'all_items' => 'All items',
+            'no_terms' => 'No terms',
+        ];
+    }
+}
+
+/**
+ * All args are passed into the mock as params
+ *
+ * The only methods mocked here are get_params, get_param and has_param
+ */
+class WP_REST_Request
+{
+    public function __construct(array $params)
+    {
+        $this->params = $params;
+    }
+
+    public function get_params()
+    {
+        return $this->params;
+    }
+
+    public function has_param($name)
+    {
+        return array_key_exists($name, $this->params);
+    }
+
+    public function get_param($name)
+    {
+        return @$this->params[$name];
     }
 }
