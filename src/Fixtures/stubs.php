@@ -7,6 +7,16 @@ if (!defined('JPEG_QUALITY')) {
  * A bunch of placeholder WordPress functions in the global namespace
  */
 
+/**
+ * @link https://developer.wordpress.org/reference/functions/register_rest_route
+ */
+function register_rest_route($namespace, $route, $args = [], $override = false)
+{
+    global $register_rest_route;
+    $register_rest_route = $register_rest_route ?? [];
+    $register_rest_route[] = [$namespace, $route, $args, $override];
+}
+
 function register_rest_field($type, $field, $args)
 {
     global $rest_fields;
@@ -223,6 +233,15 @@ function get_rest_url($blog_id = null, $path = '/', $scheme = 'rest')
 }
 
 /**
+ * Just pass it through, we trust WordPress to handle this
+ * @link https://developer.wordpress.org/reference/functions/rest_ensure_response/
+ */
+function rest_ensure_response($response)
+{
+    return $response;
+}
+
+/**
  *
  * @link https://developer.wordpress.org/reference/functions/get_taxonomy/
  */
@@ -311,6 +330,18 @@ function sanitize_title($title)
     return $title;
 }
 
+/**
+ * Fake it with htmlspecialchars
+ * @link https://developer.wordpress.org/reference/functions/esc_attr
+ */
+function esc_attr($text)
+{
+    return htmlspecialchars($text);
+}
+
+/**
+ * @link https://developer.wordpress.org/reference/functions/antispambot/
+ */
 function antispambot($email)
 {
     return "antispambot_{$email}_antispambot";

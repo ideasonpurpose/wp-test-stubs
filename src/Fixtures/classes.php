@@ -152,7 +152,7 @@ class WP_Post_Type
  */
 class WP_REST_Request
 {
-    public function __construct(array $params)
+    public function __construct(array $params = [])
     {
         $this->params = $params;
     }
@@ -171,4 +171,17 @@ class WP_REST_Request
     {
         return @$this->params[$name];
     }
+}
+
+/**
+ * So far, we're only using this for the READABLE constant
+ * @link https://developer.wordpress.org/reference/classes/wp_rest_server/
+ */
+class WP_REST_Server
+{
+    const READABLE = 'GET';
+    const CREATABLE = 'POST';
+    const EDITABLE = 'POST, PUT, PATCH';
+    const DELETABLE = 'DELETE';
+    const ALLMETHODS = 'GET, POST, PUT, PATCH, DELETE';
 }

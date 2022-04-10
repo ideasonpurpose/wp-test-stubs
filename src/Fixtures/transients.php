@@ -6,6 +6,7 @@
 function get_transient($id)
 {
     global $transients;
+    $transients ??= [];
     if (array_key_exists($id, $transients)) {
         return $transients[$id];
     }
