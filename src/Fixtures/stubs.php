@@ -223,6 +223,15 @@ function get_template_directory()
 }
 
 /**
+ * @link https://developer.wordpress.org/reference/functions/get_stylesheet/
+ */
+function get_stylesheet()
+{
+    global $stylesheet;
+    return $stylesheet ?? 'theme-slug';
+}
+
+/**
  * @link https://developer.wordpress.org/reference/functions/get_rest_url
  */
 function get_rest_url($blog_id = null, $path = '/', $scheme = 'rest')
