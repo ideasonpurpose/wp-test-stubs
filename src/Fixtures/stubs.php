@@ -223,6 +223,16 @@ function get_template_directory()
 }
 
 /**
+ * @link https://developer.wordpress.org/reference/functions/get_theme_root/
+ */
+function get_theme_root()
+{
+    global $theme_root;
+    $theme_root_dir = $theme_root ?? __DIR__;
+    return rtrim($theme_root_dir, '/');
+}
+
+/**
  * @link https://developer.wordpress.org/reference/functions/get_stylesheet/
  */
 function get_stylesheet()
