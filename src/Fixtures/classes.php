@@ -15,6 +15,19 @@ class WP_Theme
     {
         return $this->{$key};
     }
+
+    /**
+     * @link https://developer.wordpress.org/reference/classes/wp_theme/get_page_templates/
+     * @return Array
+     */
+    public function get_page_templates($post = null, $post_type = 'page')
+    {
+        global $page_templates;
+        return $page_templates || [
+            'templates/page-template.php' => 'Page Template Title',
+            'templates/page-template-2.php' => 'Page Template 2 Title',
+        ];
+    }
 }
 
 class WP_Admin_Bar
@@ -184,4 +197,12 @@ class WP_REST_Server
     const EDITABLE = 'POST, PUT, PATCH';
     const DELETABLE = 'DELETE';
     const ALLMETHODS = 'GET, POST, PUT, PATCH, DELETE';
+}
+
+/**
+ * Used to create admin tables
+ * @link https://developer.wordpress.org/reference/classes/wp_list_table/
+ */
+class WP_List_Table
+{
 }
