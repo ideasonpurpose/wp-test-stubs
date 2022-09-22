@@ -534,6 +534,14 @@ function wp_get_current_user()
 }
 
 /**
+ * @link https://developer.wordpress.org/reference/functions/get_current_user_id/
+ */
+function get_current_user_id()
+{
+    return 1;
+}
+
+/**
  * @link  https://developer.wordpress.org/reference/functions/add_query_arg/
  */
 function add_query_arg(...$args)
