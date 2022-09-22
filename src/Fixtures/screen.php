@@ -11,7 +11,6 @@ function add_screen_option($option, $args = [])
         $screen_option[$option] = [];
     }
     $screen_option[$option][] = $args;
-    d($screen_option);
 }
 
 /**
