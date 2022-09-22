@@ -98,6 +98,22 @@ function add_rewrite_rule($regex, $query, $after = 'bottom')
 }
 
 /**
+ * @link https://developer.wordpress.org/reference/functions/add_submenu_page/
+ */
+function add_submenu_page(
+    $parent_slug,
+    $page_title,
+    $menu_title,
+    $capability,
+    $menu_slug,
+    $callback = '',
+    $position = null
+) {
+    global $submenu_page_id;
+    return $submenu_page_id ?? 'submenu_page_' . $menu_slug;
+}
+
+/**
  * Similar to all_added_{actions|filters}, this returns an array of rewrite_rules
  * organized by top/bottom.
  */
