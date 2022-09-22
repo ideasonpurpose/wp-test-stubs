@@ -19,5 +19,6 @@ class Stubs
         require_once 'Fixtures/acf.php';
         require_once 'Fixtures/transients.php';
         require_once 'Fixtures/copies.php';
+        require_once 'Fixtures/screen.php';
     }
 }

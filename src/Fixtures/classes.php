@@ -206,3 +206,9 @@ class WP_REST_Server
 class WP_List_Table
 {
 }
+
+
+/**
+ * @link https://developer.wordpress.org/reference/classes/wp_screen/
+ */
+class WP_Screen {}
