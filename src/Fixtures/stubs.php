@@ -218,6 +218,11 @@ function get_post_types($args = [], $output = 'names', $operator = 'and')
     return (array) $post_types;
 }
 
+function get_pages($args = []) {
+    global $pages;
+    return $pages ?? [];
+}
+
 /**
  * Set the $template_directory var for testing.
  *
@@ -504,6 +509,15 @@ function update_attached_file()
  */
 function update_option()
 {
+}
+
+/**
+ * @link https://developer.wordpress.org/reference/functions/get_user_meta/
+ */
+function get_user_meta($user_id, $key = '', $single = false)
+{
+    global $user_meta;
+    return $user_meta ?? false;
 }
 
 /**
