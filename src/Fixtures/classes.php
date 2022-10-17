@@ -222,3 +222,18 @@ class WP_Screen
         return $screen_option[$option] ?? null;
     }
 }
+
+/**
+ * @link https://developer.wordpress.org/reference/classes/wp_error/
+ */
+class WP_Error
+{
+    /**
+     * @link https://developer.wordpress.org/reference/classes/wp_screen/get_option/
+     */
+    public function get_error_message($code = 500)
+    {
+        global $error_message;
+        return $error_message ?? "WP_Error: $code";
+    }
+}

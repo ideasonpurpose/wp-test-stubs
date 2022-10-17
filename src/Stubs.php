@@ -10,15 +10,16 @@ class Stubs
 {
     public static function init()
     {
-        require_once 'Fixtures/constants.php';
-        require_once 'Fixtures/classes.php';
-        require_once 'Fixtures/is_.php';
-        require_once 'Fixtures/stubs.php';
-        require_once 'Fixtures/hooks.php';
-        require_once 'Fixtures/query_var.php';
         require_once 'Fixtures/acf.php';
-        require_once 'Fixtures/transients.php';
+        require_once 'Fixtures/classes.php';
+        require_once 'Fixtures/constants.php';
         require_once 'Fixtures/copies.php';
+        require_once 'Fixtures/hooks.php';
+        require_once 'Fixtures/is_.php';
+        require_once 'Fixtures/plugin.php';
+        require_once 'Fixtures/query_var.php';
         require_once 'Fixtures/screen.php';
+        require_once 'Fixtures/stubs.php';
+        require_once 'Fixtures/transients.php';
     }
 }

@@ -22,6 +22,7 @@ $is_ = [
     'is_search',
     'is_single',
     'is_user_logged_in',
+    'is_wp_error',
     'has_post_thumbnail',
     'wp_is_json_request',
 ];

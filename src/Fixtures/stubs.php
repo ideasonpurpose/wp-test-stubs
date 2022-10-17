@@ -218,7 +218,8 @@ function get_post_types($args = [], $output = 'names', $operator = 'and')
     return (array) $post_types;
 }
 
-function get_pages($args = []) {
+function get_pages($args = [])
+{
     global $pages;
     return $pages ?? [];
 }
@@ -495,6 +496,19 @@ function wp_dropdown_categories($args)
     global $wp_dropdown_categories;
     $wp_dropdown_categories = $wp_dropdown_categories ?? [];
     $wp_dropdown_categories[] = $args;
+}
+
+/**
+ * @link https://developer.wordpress.org/reference/functions/wp_remote_post/
+ */
+function wp_remote_post($url = '', $args = [])
+{
+    global $wp_remote_post;
+    $default = [
+        'body' => json_encode(['url' => $url, 'args' => $args]),
+        'response' => ['code' => 200],
+    ];
+    return $wp_remote_post ?? $default;
 }
 
 /**
