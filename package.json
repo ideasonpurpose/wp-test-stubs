@@ -54,10 +54,10 @@
     ]
   },
   "devDependencies": {
-    "@prettier/plugin-php": "^0.17.6",
+    "@prettier/plugin-php": "^0.19.1",
     "auto-changelog": "^2.3.0",
     "prettier": "^2.5.0",
-    "version-everything": "^0.6.4"
+    "version-everything": "^0.9.1"
   },
   "auto-changelog": {
     "package": true,
