@@ -49,6 +49,11 @@ function _get_all($hookType, $addRemove)
                 foreach ($hook['action'] as $a) {
                     $action .= is_string($a) ? $a : '';
                 }
+            } elseif (is_a($hook['action'], 'Closure')) {
+                /**
+                 * Execute anonymous functions (arrow functions)
+                 */
+                $action = $hook['action']();
             }
             $hooks[] = [$hook[$addRemove], $action];
         }

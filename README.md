@@ -21,14 +21,14 @@ Any functions which need testing should be public and capable of being tested in
 
 ### `all_added_actions` and `all_added_filters` helper functions
 
-These two helper functions return a simplified view of the global `$actions` and `$filters` arrays with each added hook represented as two-item, hook/action array: `['hook_name', 'method_name']`. This can be used with PHPUnit like this:
+These two helper functions return a simplified view of the global `$actions` and `$filters` arrays with each added hook represented as two-item, hook/action array: `['hook_name', 'method_name']`. The two parallel functions, `all_removed_actions` and `all_removed_filters` can be used with PHPUnit like this:
 
 ```php
 
 $this->assertContains(['hook_name', 'method_name'], all_added_filters());
 ```
+For short-arrow and anonymous functions (Closures), test for their returned values. For example, `fn() => 5` can be validated with `assertContains(['hook_name', 5]`. 
 
-Two parallel functions, `all_removed_actions` and `all_removed_filters` can be used the same way.
 
 ## is\_{$something} functions
 
