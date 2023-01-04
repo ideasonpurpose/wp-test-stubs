@@ -537,8 +537,26 @@ function get_user_meta($user_id, $key = '', $single = false)
 /**
  * @link https://developer.wordpress.org/reference/functions/update_user_meta/
  */
-function update_user_meta()
+function update_user_meta($user_id, $meta_key, $meta_value, $prev_value = '')
 {
+    global $user_meta;
+    $user_meta = $user_meta ?? [];
+    $user_meta = is_array($user_meta) ? $user_meta : [$user_meta];
+    $user_meta[] = [
+        'user_id' => $user_id,
+        'meta_key' => $meta_key,
+        'meta_value' => $meta_value,
+        'prev_value' => $prev_value,
+    ];
+    $user_meta[$user_id] =
+        array_key_exists($user_id, $user_meta) && is_array($user_meta[$user_id])
+            ? $user_meta[$user_id]
+            : [];
+    $user_meta[$user_id][] = [
+        'meta_key' => $meta_key,
+        'meta_value' => $meta_value,
+        'prev_value' => $prev_value,
+    ];
 }
 
 /**

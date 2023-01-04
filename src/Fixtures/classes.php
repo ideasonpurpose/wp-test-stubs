@@ -6,6 +6,8 @@
 
 class WP_Theme
 {
+    public $Name;
+
     public function __construct($Name = 'test-theme')
     {
         $this->Name = $Name;
@@ -64,10 +66,13 @@ class WP_Image_Editor
 
 class WP_User
 {
-    public $ID = 1;
-    public $display_name = 'Stella';
-    public $user_email = 'stella@example.com';
-    public $user_login = 'stella';
+    public function __construct($ID = 1, $name = 'stella')
+    {
+        $this->ID = $ID;
+        $this->user_login = $name;
+        $this->display_name = 'Stella';
+        $this->user_email = 'stella@example.com';
+    }
 
     public function to_array()
     {
