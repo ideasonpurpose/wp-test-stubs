@@ -245,6 +245,17 @@ function get_template_directory()
 }
 
 /**
+ * https://developer.wordpress.org/reference/functions/get_template_directory_uri/
+ * @return void
+ */
+function get_template_directory_uri()
+{
+    global $template_directory_uri;
+    $template_dir = $template_directory_uri ?? 'https://example.com/wp-content/themes/test';
+    return rtrim($template_dir, '/');
+}
+
+/**
  * @link https://developer.wordpress.org/reference/functions/get_theme_root/
  */
 function get_theme_root()
@@ -313,6 +324,18 @@ function home_url($path = '', $scheme = null)
     $home_url = $home_url ?? 'https://example.com';
     return rtrim($home_url, '/') . '/' . ltrim($path, '/');
     // return get_home_url(null, $path, $scheme);
+}
+
+/**
+ * $scheme is ignored for now
+ * TODO: Support $scheme
+ * @link https://developer.wordpress.org/reference/functions/admin_url/
+ */
+function admin_url($path = '', $scheme = 'admin')
+{
+    global $admin_url;
+    $admin_url = $admin_url ?? 'https://example.com/wp-admin';
+    return rtrim($admin_url, '/') . '/' . ltrim($path, '/');
 }
 
 /**
@@ -521,6 +544,32 @@ function wp_timezone_string()
 }
 
 /**
+ * @link https://developer.wordpress.org/reference/functions/wp_create_nonce/
+ */
+function wp_create_nonce($action = -1)
+{
+    global $nonce;
+    return $nonce ?? substr(sha1($action), 0, 12);
+}
+
+/**
+ * @link https://developer.wordpress.org/reference/functions/wp_die/
+ */
+function wp_die()
+{
+    throw new Exception('Throwing wp_die Exception');
+}
+
+/**
+ * @link https://developer.wordpress.org/reference/functions/wp_send_json/
+ */
+function wp_send_json($response, $status_code = null, $options = 0)
+{
+    global $wp_send_json;
+    $wp_send_json = ['response' => $response, 'status_code' => $status_code, 'options' => $options];
+}
+
+/**
  * @link https://developer.wordpress.org/reference/functions/human_time_diff/
  */
 function human_time_diff($from, $to = 123)
@@ -578,6 +627,15 @@ function update_user_meta($user_id, $meta_key, $meta_value, $prev_value = '')
 }
 
 /**
+ * @link https://developer.wordpress.org/reference/functions/delete_user_meta/
+ */
+function delete_user_meta($user_id, $meta_key, $meta_value = '')
+{
+    global $delete_user_meta;
+    $delete_user_meta = ['user_id' => $user_id, 'meta_key' => $meta_key];
+}
+
+/**
  * @link https://developer.wordpress.org/reference/functions/wp_add_inline_style/
  */
 function wp_add_inline_style($handle, $data)
@@ -603,6 +661,15 @@ function wp_get_current_user()
 function get_current_user_id()
 {
     return 1;
+}
+
+/**
+ * @link https://developer.wordpress.org/reference/functions/current_user_can/
+ */
+function current_user_can($capability, ...$args)
+{
+    global $current_user_can;
+    return !!$current_user_can;
 }
 
 /**

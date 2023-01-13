@@ -25,6 +25,7 @@ $is_ = [
     'is_wp_error',
     'has_post_thumbnail',
     'wp_is_json_request',
+    'check_ajax_referer',
 ];
 foreach ($is_ as $func) {
     eval("function {$func}() { global \${$func}; return !!\${$func}; }");

@@ -11,6 +11,7 @@ class Stubs
     public static function init()
     {
         require_once 'Fixtures/acf.php';
+        require_once 'Fixtures/assets.php';
         require_once 'Fixtures/classes.php';
         require_once 'Fixtures/constants.php';
         require_once 'Fixtures/copies.php';
