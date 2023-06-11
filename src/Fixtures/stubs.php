@@ -400,7 +400,7 @@ function sanitize_title($title)
  */
 function esc_attr($text)
 {
-    return htmlspecialchars($text);
+    return htmlspecialchars($text ?? '');
 }
 
 /**
