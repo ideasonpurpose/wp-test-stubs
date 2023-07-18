@@ -233,12 +233,30 @@ class WP_Screen
  */
 class WP_Error
 {
+    public $code;
+    public $message;
+    public $data;
+
+    public function __construct($code = '', $message = '', $data = [])
+    {
+        $this->code = $code;
+        $this->message = $message;
+        $this->data = $data;
+    }
     /**
      * @link https://developer.wordpress.org/reference/classes/wp_screen/get_option/
      */
-    public function get_error_message($code = 500)
+    public function get_error_message()
     {
         global $error_message;
-        return $error_message ?? "WP_Error: $code";
+        return $error_message ?? $this->message;
     }
+}
+
+/**
+ * @link https://developer.wordpress.org/reference/functions/is_wp_error/
+ */
+function is_wp_error($err)
+{
+    $err instanceof WP_Error;
 }
