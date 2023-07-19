@@ -258,5 +258,5 @@ class WP_Error
  */
 function is_wp_error($err)
 {
-    $err instanceof WP_Error;
+    return $err instanceof WP_Error;
 }
