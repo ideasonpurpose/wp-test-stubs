@@ -185,6 +185,8 @@ class WP_Post_Type
  */
 class WP_REST_Request
 {
+    public $params;
+
     public function __construct(array $params = [])
     {
         $this->params = $params;
