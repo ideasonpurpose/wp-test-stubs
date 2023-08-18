@@ -66,6 +66,12 @@ class WP_Image_Editor
 
 class WP_User
 {
+
+    public $ID;
+    public $user_login;
+    public $display_name;
+    public $user_email;
+
     public function __construct($ID = 1, $name = 'stella')
     {
         $this->ID = $ID;
@@ -92,6 +98,11 @@ class WP_User
 class WP_Taxonomy
 {
     public $term_id = 1;
+    public $name;
+    public $label;
+    public $query_var;
+    public $hierarchical;
+    public $labels;
 
     public function __construct(
         $name = 'animal',
@@ -150,6 +161,10 @@ class WP_Query
  */
 class WP_Post_Type
 {
+    public $name;
+    public $label;
+    public $labels;
+
     public function __construct($name = 'page', $label = 'Pages')
     {
         $this->name = $name;
@@ -236,7 +251,7 @@ class WP_Error
     public $code;
     public $message;
     public $data;
-
+    public $is_debug;
     public function __construct($code = '', $message = '', $data = [])
     {
         $this->code = $code;
