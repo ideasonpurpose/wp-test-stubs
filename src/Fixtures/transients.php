@@ -13,7 +13,8 @@ function transientHelper($function, $args, $return)
     global $transients;
     $transients = is_array($transients) ? $transients : [];
     $transients[] = array_merge([$function], $args);
-    return (bool) $return;
+    // return (bool) $return;
+    return $return;
 }
 
 /**
@@ -28,10 +29,10 @@ function get_transient(string $transient): mixed
 /**
  * @link https://developer.wordpress.org/reference/functions/set_transient
  */
-function set_transient(string $transient, mixed $value, int $expiration): bool
+function set_transient(string $transient, mixed $value, int $expiration = 0): bool
 {
     global $set_transient;
-    return transientHelper('set', func_get_args(), $set_transient);
+    return transientHelper('set', func_get_args(), (bool) $set_transient);
 }
 
 /**
@@ -40,5 +41,5 @@ function set_transient(string $transient, mixed $value, int $expiration): bool
 function delete_transient(string $transient): bool
 {
     global $delete_transient;
-    return transientHelper('delete', func_get_args(), $delete_transient);
+    return transientHelper('delete', func_get_args(), (bool) $delete_transient);
 }
