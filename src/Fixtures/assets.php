@@ -16,6 +16,21 @@ function wp_enqueue_script($handle, $file, $deps = [], $version = false, $showIn
 }
 
 /**
+ * @link https://developer.wordpress.org/reference/functions/wp_enqueue_style/
+ */
+function wp_enqueue_style($handle, $src = '', $deps = [], $ver = false, $media = 'all')
+{
+    global $enqueued;
+    $enqueued[] = [
+        'handle' => $handle,
+        'src' => $src,
+        'deps' => $deps,
+        'version' => $ver,
+        'media' => $media,
+    ];
+}
+
+/**
  * @link https://developer.wordpress.org/reference/functions/wp_register_script
  */
 function wp_register_script($handle, $src, $deps, $ver, $in_footer)

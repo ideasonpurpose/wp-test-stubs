@@ -6,6 +6,13 @@
  * All three functions work the same way:
  * A global $transients array is appended with an array containing the function name and all arguments
  * Each function returns a named global matching its name, cast to a boolean value.
+ *
+ * For returning values from get_transient, store a value on the global $get_transient
+ * variable using the the $transient name as the key.
+ *
+ * eg.
+ *     global $get_transient;
+ *     $get_transient['some-transient'] = "transient value";
  */
 
 function transientHelper($function, $args, $return)
@@ -13,7 +20,6 @@ function transientHelper($function, $args, $return)
     global $transients;
     $transients = is_array($transients) ? $transients : [];
     $transients[] = array_merge([$function], $args);
-    // return (bool) $return;
     return $return;
 }
 
@@ -23,7 +29,9 @@ function transientHelper($function, $args, $return)
 function get_transient(string $transient): mixed
 {
     global $get_transient;
-    return transientHelper('get', func_get_args(), $get_transient);
+    $get_transient = is_array($get_transient) ? $get_transient : [];
+    $value = array_key_exists($transient, $get_transient) ?: false;
+    return transientHelper('get', func_get_args(), $value);
 }
 
 /**
