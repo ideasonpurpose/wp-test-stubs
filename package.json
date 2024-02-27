@@ -27,37 +27,13 @@
     "composer:update": "docker-compose run --rm composer update",
     "version": "version-everything && auto-changelog && git add -u"
   },
-  "prettier": {
-    "overrides": [
-      {
-        "files": "*.html",
-        "options": {
-          "printWidth": 120,
-          "tabWidth": 2
-        }
-      },
-      {
-        "files": "*.md",
-        "options": {
-          "embeddedLanguageFormatting": "off"
-        }
-      },
-      {
-        "files": "*.php",
-        "options": {
-          "printWidth": 100,
-          "singleQuote": true,
-          "tabWidth": 4,
-          "trailingCommaPHP": true
-        }
-      }
-    ]
-  },
+  "prettier": "@ideasonpurpose/prettier-config",
   "devDependencies": {
-    "@prettier/plugin-php": "^0.19.1",
-    "auto-changelog": "^2.3.0",
-    "prettier": "^2.5.0",
-    "version-everything": "^0.9.1"
+    "@ideasonpurpose/prettier-config": "^0.0.4",
+    "@prettier/plugin-php": "^0.22.2",
+    "auto-changelog": "^2.4.0",
+    "prettier": "^3.2.5",
+    "version-everything": "^0.11.0"
   },
   "auto-changelog": {
     "package": true,
