@@ -29,8 +29,8 @@ function transientHelper($function, $args, $return)
 function get_transient(string $transient): mixed
 {
     global $get_transient;
-    $get_transient = is_array($get_transient) ? $get_transient : [];
-    $value = array_key_exists($transient, $get_transient) ?: false;
+    $get_transient =        is_array($get_transient) ? $get_transient : [];
+    $value = $get_transient[$transient] ?? false;
     return transientHelper('get', func_get_args(), $value);
 }
 
