@@ -12,7 +12,7 @@ function get_plugin_data()
     global $plugin_data;
     return $plugin_data ?? [
         'Name' => 'Fake Plugin Data',
-        'Version' => '1.22.333'
+        'Version' => '1.22.333',
     ];
 }
 

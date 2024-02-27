@@ -274,7 +274,6 @@ function get_stylesheet()
     return $stylesheet ?? 'theme-slug';
 }
 
-
 /**
  * Just pass it through, we trust WordPress to handle this
  * @link https://developer.wordpress.org/reference/functions/rest_ensure_response/
@@ -303,7 +302,6 @@ function get_terms(array|string $args = [], array|string $deprecated = '')
     $get_terms = $get_terms ?? [new WP_Term(), new WP_Term()];
     return $get_terms;
 }
-
 
 /**
  * @link https://developer.wordpress.org/reference/functions/add_meta_box/

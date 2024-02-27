@@ -21,7 +21,7 @@ class Stubs
         require_once 'Fixtures/query_var.php';
         require_once 'Fixtures/screen.php';
         require_once 'Fixtures/stubs.php';
-        require_once 'Fixtures/urls.php';
         require_once 'Fixtures/transients.php';
+        require_once 'Fixtures/urls.php';
     }
 }

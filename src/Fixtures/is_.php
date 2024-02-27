@@ -12,6 +12,8 @@
  * To add additional functions, add their names to the $is_ array
  */
 $is_ = [
+    'check_ajax_referer',
+    'has_post_thumbnail',
     'is_admin_bar_showing',
     'is_admin',
     'is_archive',
@@ -23,9 +25,7 @@ $is_ = [
     'is_single',
     'is_user_logged_in',
     // 'is_wp_error', // Moved to classes with WP_ERROR
-    'has_post_thumbnail',
     'wp_is_json_request',
-    'check_ajax_referer',
 ];
 foreach ($is_ as $func) {
     eval("function {$func}() { global \${$func}; return !!\${$func}; }");

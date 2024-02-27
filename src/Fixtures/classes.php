@@ -66,7 +66,6 @@ class WP_Image_Editor
 
 class WP_User
 {
-
     public $ID;
     public $user_login;
     public $display_name;
