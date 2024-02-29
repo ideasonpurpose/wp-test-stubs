@@ -432,12 +432,15 @@ function wp_get_theme()
 }
 
 /**
- * @link https://developer.wordpress.org/reference/functions/wp_get_attachment_image_src/
+ * @link https://developer.wordpress.org/reference/functions/wp_get_original_image_path/
+ * @param int $attachment_id
+ * @param bool $unfiltered
+ * @return string|false
  */
-function wp_get_attachment_image_src($attachment_id, $size = 'thumbnail', $icon = false)
+function wp_get_original_image_path(int $attachment_id, bool $unfiltered = false): string|false
 {
-    global $wp_get_attachment_image_src;
-    return $wp_get_attachment_image_src ?? ['placeholder/image.jpg', 1024, 768, true];
+    global $original_image_path;
+    return $original_image_path ?? false;
 }
 
 /**
@@ -638,14 +641,20 @@ function current_user_can($capability, ...$args)
 }
 
 /**
+ * Mimics behavior of add_query_arg, but simplified. Stores call $args in global $add_query_arg
  * @link  https://developer.wordpress.org/reference/functions/add_query_arg/
  */
 function add_query_arg(...$args)
 {
+    global $add_query_arg;
+    $add_query_arg = $add_query_arg ?? [];
+    $add_query_arg = is_array($add_query_arg) ? $add_query_arg : [$add_query_arg];
+    $add_query_arg[] = ['args' => $args];
+
     $params = [];
     if (is_array($args[0])) {
         $params = $args[0];
-        $uri = $args[1];
+        $url = $args[1];
     } else {
         $params[$args[0]] = $args[1];
         $url = $args[2];
