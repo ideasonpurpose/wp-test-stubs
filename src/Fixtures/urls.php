@@ -62,5 +62,5 @@ function get_rest_url($blog_id = null, $path = '/', $scheme = 'rest')
 {
     global $rest_url;
     $rest_url ??= 'https://example.com/wp-json/'; // plain permalink version is  http://example.com/index.php?rest_route=
-    return rtrim($rest_url, '/') . $path;
+    return rtrim($rest_url, '/') . '/' . ltrim($path, '/');
 }
