@@ -369,6 +369,16 @@ function esc_attr($text)
 }
 
 /**
+ * Return the global $esc_url if set, otherwise return the $url arg
+ * @link https://developer.wordpress.org/reference/functions/esc_url/
+ */
+function esc_url($url, $protocols = null, $_context = 'display')
+{
+    global $esc_url;
+    return $esc_url ?? $url;
+}
+
+/**
  * @link https://developer.wordpress.org/reference/functions/antispambot/
  */
 function antispambot($email)
