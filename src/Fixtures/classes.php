@@ -177,6 +177,15 @@ class WP_Post_Type
     }
 }
 
+
+/**
+ * @link https://developer.wordpress.org/reference/classes/wp_rest_controller/
+ */
+abstract class WP_REST_Controller
+{
+public $namespace;
+}
+
 /**
  * All args are passed into the mock as params
  *
