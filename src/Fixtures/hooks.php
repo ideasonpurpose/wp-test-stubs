@@ -64,23 +64,27 @@ function _get_all($hookType, $addRemove)
 function all_added_actions()
 {
     global $actions;
+    $actions = $actions ?? [];
     return _get_all($actions, 'add');
 }
 function all_removed_actions()
 {
     global $actions;
+    $actions = $actions ?? [];
     return _get_all($actions, 'remove');
 }
 
 function all_added_filters()
 {
     global $filters;
+    $filters = $filters ?? [];
     return _get_all($filters, 'add');
 }
 
 function all_removed_filters()
 {
     global $filters;
+    $filters = $filters ?? [];
     return _get_all($filters, 'remove');
 }
 
