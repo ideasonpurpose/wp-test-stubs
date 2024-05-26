@@ -10,19 +10,12 @@ class Stubs
 {
     public static function init()
     {
-        require_once 'Fixtures/acf.php';
-        require_once 'Fixtures/assets.php';
-        require_once 'Fixtures/attachments.php';
-        require_once 'Fixtures/classes.php';
-        require_once 'Fixtures/constants.php';
-        require_once 'Fixtures/copies.php';
-        require_once 'Fixtures/hooks.php';
-        require_once 'Fixtures/is_.php';
-        require_once 'Fixtures/plugin.php';
-        require_once 'Fixtures/query_var.php';
-        require_once 'Fixtures/screen.php';
-        require_once 'Fixtures/stubs.php';
-        require_once 'Fixtures/transients.php';
-        require_once 'Fixtures/urls.php';
+        $dir = __DIR__ . '/Fixtures';
+        $iterator = new \RecursiveDirectoryIterator($dir);
+        foreach (new \RecursiveIteratorIterator($iterator) as $file) {
+            if (strtolower($file->getExtension()) === 'php') {
+                require_once $file;
+            }
+        }
     }
 }
