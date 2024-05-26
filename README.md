@@ -2,7 +2,7 @@
 
 # WP Test Stubs
 
-#### Version 0.1.0
+#### Version 0.2.0
 
 [![Packagist](https://badgen.net/packagist/v/ideasonpurpose/wp-test-stubs)](https://packagist.org/packages/ideasonpurpose/wp-test-stubs)
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
