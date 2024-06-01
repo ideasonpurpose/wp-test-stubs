@@ -1,6 +1,7 @@
 <?php
 
 /**
+ * @param int|WP_Post|null $post
  * @link https://developer.wordpress.org/reference/functions/get_post/
  */
 function get_post($post = null, $output = 'OBJECT', $filter = 'raw')
