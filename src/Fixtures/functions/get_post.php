@@ -12,9 +12,9 @@ function get_post($post = null, $output = 'OBJECT', $filter = 'raw')
 {
     global $get_post;
 
-    if (is_object($post)) {
-        return $post;
-    } else {
-        return (is_array($get_post) ? array_shift($get_post) : $get_post) ?? false;
-    }
+    return (is_array($get_post)
+        ? array_shift($get_post)
+        : (is_object($post)
+            ? $post
+            : $get_post)) ?? false;
 }
