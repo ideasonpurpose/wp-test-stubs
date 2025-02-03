@@ -27,8 +27,8 @@ These two helper functions return a simplified view of the global `$actions` and
 
 $this->assertContains(['hook_name', 'method_name'], all_added_filters());
 ```
-For short-arrow and anonymous functions (Closures), test for their returned values. For example, `fn() => 5` can be validated with `assertContains(['hook_name', 5]`. 
 
+For short-arrow and anonymous functions (Closures), test for their returned values. For example, `fn() => 5` can be validated with `assertContains(['hook_name', 5]`.
 
 ## is\_{$something} functions
 
@@ -39,6 +39,34 @@ To toggle any `is_` function, set a value like this:
 ```php
 global $is_admin;
 $is_admin = true;
+```
+
+## i18n functions
+
+Several [basic WordPress i18n functions](https://developer.wordpress.org/plugins/internationalization/how-to-internationalize-your-plugin/#basic-functions) are stubbed. These all work the same way. If `$i18n` global array is defined, the first string argument will be used as a key and any assigned value will be returned. If no key is defined, the original string is returned.
+
+Example:
+
+```php
+
+$i18n = [
+  'Bird' => 'pájaro',
+  'Birds' => 'pájaros',
+]
+
+__('bird', 'ignored'); // pájaro
+_x('Bird', 'ignored', 'also-ignored'); // pájaro
+_n('Bird', 'Birds', 3, 'ignored'); // pájaros
+
+```
+
+Note that `_n()` will return through sprintf, templates should appear as keys the same as they would in a **\*.pot** file:
+
+```php
+$i18n = [
+  '%s bird' => '%s pájaro',
+  '%s birds' => '%s pájaros',
+]
 ```
 
 ## Local Development
