@@ -7,7 +7,7 @@
  *
  * @link https://developer.wordpress.org/reference/functions/get_posts/
  */
-function get_posts(array $args = null): array
+function get_posts(?array $args = null): array
 {
     global $posts, $get_posts;
     $get_posts = $get_posts ?? [];
