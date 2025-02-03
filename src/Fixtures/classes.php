@@ -119,6 +119,16 @@ class WP_Taxonomy
             'no_terms' => 'No terms',
         ];
     }
+
+    public static function get_default_labels()
+    {
+        global $default_labels;
+
+        return $default_labels ?? [
+            'name' => ['Tags', 'Categories'],
+            'singular_name' => ['Tag', 'Category'],
+        ];
+    }
 }
 
 /**
@@ -175,6 +185,16 @@ class WP_Post_Type
             'no_terms' => 'No terms',
         ];
     }
+
+    public static function get_default_labels()
+    {
+        global $default_labels;
+
+        return $default_labels ?? [
+            'name' => ['Posts', 'Pages'],
+            'singular_name' => ['Post', 'Page'],
+        ];
+    }
 }
 
 /**
@@ -211,9 +231,7 @@ class WP_REST_Request
  * Used to create admin tables
  * @link https://developer.wordpress.org/reference/classes/wp_list_table/
  */
-class WP_List_Table
-{
-}
+class WP_List_Table {}
 
 /**
  * See also the screen.php file for utility functions and globals
