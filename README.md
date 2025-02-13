@@ -69,6 +69,32 @@ $i18n = [
 ]
 ```
 
+## Replacing error_log
+
+A simple stub of PHP's built-in [`error_log`](https://www.php.net/manual/en/function.error-log.php) function is provided. Use namespaces to override the native function, add something like this to the top of your test files:
+
+```php
+Test\Stubs::init();
+
+if (!function_exists(__NAMESPACE__ . '\error_log')) {
+    function error_log($err)
+    {
+        Test\Stubs::error_log($err);
+    }
+}
+```
+
+Every call to error_log will append the logged content as a string to the global variable. To test calls to error_log, expose the global and test for strings like this:
+
+```php
+      public function testError_log()
+    {
+        global $error_log;
+        log_and_error();  // logs "needle"
+        $this->assertStringContainsString("needle", $error_log);
+    }
+```
+
 ## Local Development
 
 To have Composer check out a live clone of this repo instead of downloading an archive from Packagist, add a repositories key to the root of your project's **composer.json** file:

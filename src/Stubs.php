@@ -18,4 +18,22 @@ class Stubs
             }
         }
     }
+
+    /**
+     * A utility proxy for PHP's native error_log().
+     * Proxy this into the calling namespace with something like this:
+     *
+     *    namespace Test\Namespace;
+     *    if (!function_exists(__NAMESPACE__ . '\error_log')) {
+     *        function error_log($err)
+     *        {
+     *            Test\Stubs::error_log($err);
+     *        }
+     *    }
+     */
+    public static function error_log($err)
+    {
+        global $error_log;
+        $error_log = "{$error_log}\n{$err}";
+    }
 }
