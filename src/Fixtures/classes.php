@@ -155,11 +155,11 @@ class WP_REST_Request
     }
 }
 
-/**
- * Used to create admin tables
- * @link https://developer.wordpress.org/reference/classes/wp_list_table/
- */
-class WP_List_Table {}
+// /**
+//  * Used to create admin tables
+//  * @link https://developer.wordpress.org/reference/classes/wp_list_table/
+//  */
+// class WP_List_Table {}
 
 /**
  * See also the screen.php file for utility functions and globals
