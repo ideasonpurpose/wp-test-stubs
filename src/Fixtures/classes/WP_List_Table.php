@@ -7,15 +7,20 @@
 class WP_List_Table
 {
     public $items;
-    public $test_var;
+
+    public function get_columns()
+    {
+    }
+
+    public function get_pagenum()
+    {
+    }
 
     public function prepare_items()
     {
     }
-    public function get_columns()
+
+    public function set_pagination_args()
     {
-    }
-    public function stop() {
-        die('stopped');
     }
 }
