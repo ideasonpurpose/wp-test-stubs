@@ -2,6 +2,8 @@
 
 namespace IdeasOnPurpose\WP\Test;
 
+use stdClass;
+
 /**
  * Wrapper class for importing our collected WordPress testing stubs and doubles
  * into the global namespace.
@@ -10,6 +12,8 @@ class Stubs
 {
     public static function init()
     {
+        self::setupGlobals();
+
         $dir = __DIR__ . '/Fixtures';
         $iterator = new \RecursiveDirectoryIterator($dir);
         foreach (new \RecursiveIteratorIterator($iterator) as $file) {
@@ -17,6 +21,16 @@ class Stubs
                 require_once $file;
             }
         }
+    }
+
+    /**
+     * Create placeholders for some WordPress global variables.
+     */
+    public static function setupGlobals()
+    {
+        global $wp, $wpdb;
+        $wp = $wp ?? new stdClass();
+        $wpdb = $wpdb ?? new stdClass();
     }
 
     /**
