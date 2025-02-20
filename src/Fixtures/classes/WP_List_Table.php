@@ -8,6 +8,10 @@ class WP_List_Table
 {
     public $items;
 
+    public function display()
+    {
+    }
+
     public function get_columns()
     {
     }

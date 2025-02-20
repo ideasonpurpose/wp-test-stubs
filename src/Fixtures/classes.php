@@ -52,18 +52,6 @@ class WP_Admin_Bar
     }
 }
 
-class WP_Image_Editor
-{
-    public function generate_filename()
-    {
-        return 'file-optimized.jpg';
-    }
-    public function save()
-    {
-        return ['file' => 'file-optimized.jpg', 'path'];
-    }
-}
-
 class WP_User
 {
     public $ID;
