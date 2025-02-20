@@ -460,12 +460,12 @@ function wp_upload_dir()
 {
     global $wp_upload_dir;
     return $wp_upload_dir ?? [
-        'path' => '/Users/wp/fake/path',
-        'url' => 'http://example.com/fake/path',
-        'subdir' => '/fake',
-        'basedir' => '/fake/path',
-        'baseurl' => 'http://example.com/fake/path',
-        'error' => '',
+        'path' => '/www/html/wp-content/uploads/2025/02',
+        'url' => 'http://example.com/wp-content/uploads/2025/02',
+        'subdir' => '/2025/02',
+        'basedir' => '/www/html/wp-content/uploads',
+        'baseurl' => 'http://example.com/wp-content/uploads',
+        'error' => false,
     ];
 }
 
