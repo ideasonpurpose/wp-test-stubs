@@ -114,42 +114,6 @@ class WP_Query
 }
 
 /**
- * All args are passed into the mock as params
- *
- * The only methods mocked here are get_params, get_param and has_param
- */
-class WP_REST_Request
-{
-    public $params;
-
-    public function __construct(array $params = [])
-    {
-        $this->params = $params;
-    }
-
-    public function get_params()
-    {
-        return $this->params;
-    }
-
-    public function has_param($name)
-    {
-        return array_key_exists($name, $this->params);
-    }
-
-    public function get_param($name)
-    {
-        return @$this->params[$name];
-    }
-}
-
-// /**
-//  * Used to create admin tables
-//  * @link https://developer.wordpress.org/reference/classes/wp_list_table/
-//  */
-// class WP_List_Table {}
-
-/**
  * See also the screen.php file for utility functions and globals
  * @link https://developer.wordpress.org/reference/classes/wp_screen/
  */
