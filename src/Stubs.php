@@ -48,6 +48,6 @@ class Stubs
     public static function error_log($err)
     {
         global $error_log;
-        $error_log = "{$error_log}\n{$err}";
+        $error_log = "{(string) $error_log}\n{$err}";    
     }
 }
