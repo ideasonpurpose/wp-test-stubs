@@ -6,6 +6,7 @@
 function wp_enqueue_script($handle, $file, $deps = [], $version = false, $showInHead = false)
 {
     global $enqueued;
+    $enqueued = $enqueued ?? [];
     $enqueued[] = [
         'handle' => $handle,
         'file' => $file,
@@ -21,6 +22,7 @@ function wp_enqueue_script($handle, $file, $deps = [], $version = false, $showIn
 function wp_enqueue_style($handle, $src = '', $deps = [], $ver = false, $media = 'all')
 {
     global $enqueued;
+    $enqueued = $enqueued ?? [];
     $enqueued[] = [
         'handle' => $handle,
         'src' => $src,
@@ -36,6 +38,7 @@ function wp_enqueue_style($handle, $src = '', $deps = [], $ver = false, $media =
 function wp_register_script($handle, $src, $deps, $ver, $in_footer)
 {
     global $scripts;
+    $scripts = $scripts ?? [];
     $scripts[] = ['handle' => $handle, 'src' => $src, 'ver' => $ver, 'in_footer' => $in_footer];
 }
 
@@ -45,6 +48,7 @@ function wp_register_script($handle, $src, $deps, $ver, $in_footer)
 function wp_register_style($handle, $src, $deps, $ver, $media = '')
 {
     global $styles;
+    $styles = $styles ?? [];
     $styles[] = [
         'handle' => $handle,
         'src' => $src,
