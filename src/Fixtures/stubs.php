@@ -107,7 +107,7 @@ function add_submenu_page(
     $capability,
     $menu_slug,
     $callback = '',
-    $position = null
+    $position = null,
 ) {
     global $submenu_page_id;
     return $submenu_page_id ?? 'submenu_page_' . $menu_slug;
@@ -127,7 +127,7 @@ function all_rewrite_rules()
             $carry[$item['after']][] = [$item['regex'], $item['query']];
             return $carry;
         },
-        ['top' => [], 'bottom' => []]
+        ['top' => [], 'bottom' => []],
     );
 }
 function flush_rewrite_rules(bool $hard = true)
@@ -313,7 +313,7 @@ function add_meta_box(
     $screen = null,
     $context = 'advanced',
     $priority = 'default',
-    $callback_args = null
+    $callback_args = null,
 ) {
     global $meta_boxes;
     $meta_boxes = $meta_boxes ?? [];
@@ -406,7 +406,7 @@ function add_menu_page(
     $menu_slug,
     $function = '',
     $icon_url = '',
-    $position = null
+    $position = null,
 ) {
     global $menu_pages;
     $menu_pages = $menu_pages ?? [];
@@ -559,16 +559,12 @@ function human_time_diff($from, $to = 123)
 /**
  * @link https://developer.wordpress.org/reference/functions/update_attached_file/
  */
-function update_attached_file()
-{
-}
+function update_attached_file() {}
 
 /**
  * @link https://developer.wordpress.org/reference/functions/update_option/
  */
-function update_option()
-{
-}
+function update_option() {}
 
 /**
  * @link https://developer.wordpress.org/reference/functions/get_user_meta/
@@ -648,6 +644,15 @@ function current_user_can($capability, ...$args)
 {
     global $current_user_can;
     return !!$current_user_can;
+}
+
+/**
+ * @link https://developer.wordpress.org/reference/functions/wp_get_environment_type/
+ */
+function wp_get_environment_type()
+{
+    global $wp_get_environment_type;
+    return $wp_get_environment_type ?? 'production';
 }
 
 /**
