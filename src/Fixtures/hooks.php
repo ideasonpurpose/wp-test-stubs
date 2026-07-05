@@ -121,3 +121,28 @@ function action_was_removed($hook, $cmd = null)
     }
     return false;
 }
+
+/**
+ * Records the applied filter as [hook, value, args] in a global array of $filters_applied
+ *
+ * @link https://developer.wordpress.org/reference/functions/apply_filters/
+ */
+function apply_filters(string $hook_name, mixed $value, mixed ...$args)
+{
+    global $filters_applied;
+    $filters_applied = $filters_applied ?? [];
+    $filters_applied[] = ['hook' => $hook_name, 'value' => $value, 'args' => $args];
+    return $value;
+}
+
+/**
+ * Records the applied action as [hook, arg] in a global array of $actions_done
+ *
+ * @link https://developer.wordpress.org/reference/functions/do_action/
+ */
+function do_action(string $hook_name, mixed ...$arg)
+{
+    global $actions_done;
+    $actions_done = $actions_done ?? [];
+    $actions_done[] = ['hook' => $hook_name, 'arg' => $arg];
+}
