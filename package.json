@@ -25,19 +25,14 @@
     "composer:install": "docker-compose run --rm composer",
     "composer:require": "docker-compose run --rm composer require",
     "composer:update": "docker-compose run --rm composer update",
-    "version": "version-everything && auto-changelog && git add -u"
+    "version": "version-everything && git add -u"
   },
   "prettier": "@ideasonpurpose/prettier-config",
   "devDependencies": {
-    "@ideasonpurpose/prettier-config": "^0.0.4",
-    "@prettier/plugin-php": "^0.22.2",
-    "auto-changelog": "^2.4.0",
-    "prettier": "^3.2.5",
-    "version-everything": "^0.11.0"
-  },
-  "auto-changelog": {
-    "package": true,
-    "backfillLimit": 7
+    "@ideasonpurpose/prettier-config": "^1.1.1",
+    "@prettier/plugin-php": "^0.25.0",
+    "prettier": "^3.9.4",
+    "version-everything": "^0.12.2"
   },
   "version-everything": {
     "files": [
