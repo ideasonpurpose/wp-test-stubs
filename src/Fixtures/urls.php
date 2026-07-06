@@ -64,3 +64,11 @@ function get_rest_url($blog_id = null, $path = '/', $scheme = 'rest')
     $rest_url ??= 'https://example.com/wp-json/'; // plain permalink version is  http://example.com/index.php?rest_route=
     return rtrim($rest_url, '/') . '/' . ltrim($path, '/');
 }
+
+/**
+ * @link https://developer.wordpress.org/reference/functions/wp_parse_url/
+ */
+function wp_parse_url($url, $component = -1)
+{
+    return parse_url($url, $component);
+}
