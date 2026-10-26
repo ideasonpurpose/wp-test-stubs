@@ -72,3 +72,31 @@ function wp_parse_url($url, $component = -1)
 {
     return parse_url($url, $component);
 }
+
+/**
+ * Mimics behavior of add_query_arg, but simplified. Stores call $args in global $add_query_arg
+ * @link  https://developer.wordpress.org/reference/functions/add_query_arg/
+ */
+function add_query_arg(...$args)
+{
+    global $add_query_arg;
+    $add_query_arg = $add_query_arg ?? [];
+    $add_query_arg = is_array($add_query_arg) ? $add_query_arg : [$add_query_arg];
+    $add_query_arg[] = ['args' => $args];
+
+    $params = [];
+    if (is_array($args[0])) {
+        $params = $args[0];
+        $url = $args[1];
+    } else {
+        $params[$args[0]] = $args[1];
+        $url = $args[2];
+    }
+    $url ??= 'https://example.com';
+
+    $glue = strpos($url, '?') ? '&' : '?';
+    foreach ($params as $key => $value) {
+        $url .= "{$glue}{$key}={$value}";
+    }
+    return $url;
+}

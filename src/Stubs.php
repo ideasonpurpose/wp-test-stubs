@@ -7,6 +7,11 @@ use stdClass;
 /**
  * Wrapper class for importing our collected WordPress testing stubs and doubles
  * into the global namespace.
+ *
+ * init() loads every PHP file in src/Fixtures/classes, then every top-level PHP
+ * file in src/Fixtures. Add a stub by putting it in the matching file. No edit
+ * here is required unless a new class must load before another class.
+ * WP_REST_Controller is loaded first because WP_REST_Posts_Controller extends it.
  */
 class Stubs
 {
@@ -16,38 +21,22 @@ class Stubs
 
         $fixtures = __DIR__ . '/Fixtures';
 
-        require_once "$fixtures/classes.php";
-        require_once "$fixtures/classes/WP_Image_Editor.php";
-        require_once "$fixtures/classes/WP_List_Table.php";
-        require_once "$fixtures/classes/WP_Post_Type.php";
         require_once "$fixtures/classes/WP_REST_Controller.php";
-        require_once "$fixtures/classes/WP_REST_Posts_Controller.php";
-        require_once "$fixtures/classes/WP_REST_Request.php";
-        require_once "$fixtures/classes/WP_REST_Server.php";
-        require_once "$fixtures/classes/WP_Taxonomy.php";
+        self::requirePhpFiles("$fixtures/classes");
+        self::requirePhpFiles($fixtures);
+    }
 
-        require_once "$fixtures/functions/get_object_taxonomies.php";
-        require_once "$fixtures/functions/get_post_type.php";
-        require_once "$fixtures/functions/get_post.php";
-        require_once "$fixtures/functions/get_posts.php";
-        require_once "$fixtures/functions/get_the_terms.php";
-        require_once "$fixtures/functions/wp_list_pluck.php";
-
-        require_once "$fixtures/acf.php";
-        require_once "$fixtures/assets.php";
-        require_once "$fixtures/attachments.php";
-        require_once "$fixtures/constants.php";
-        require_once "$fixtures/copies.php";
-        require_once "$fixtures/hooks.php";
-        require_once "$fixtures/i18n.php";
-        require_once "$fixtures/is_.php";
-        require_once "$fixtures/nav_menu.php";
-        require_once "$fixtures/plugin.php";
-        require_once "$fixtures/query_var.php";
-        require_once "$fixtures/screen.php";
-        require_once "$fixtures/stubs.php";
-        require_once "$fixtures/transients.php";
-        require_once "$fixtures/urls.php";
+    /**
+     * Require every PHP file in $dir. Not recursive.
+     * Sorted so the load order is deterministic. require_once skips files already loaded.
+     */
+    private static function requirePhpFiles(string $dir): void
+    {
+        $files = glob($dir . '/*.php') ?: [];
+        sort($files, SORT_STRING);
+        foreach ($files as $file) {
+            require_once $file;
+        }
     }
 
     /**
@@ -68,7 +57,7 @@ class Stubs
      *    if (!function_exists(__NAMESPACE__ . '\error_log')) {
      *        function error_log($err)
      *        {
-     *            Test\Stubs::error_log($err);
+     *            IdeasOnPurpose\WP\Test\Stubs::error_log($err);
      *        }
      *    }
      */

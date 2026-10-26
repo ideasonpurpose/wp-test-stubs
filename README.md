@@ -74,12 +74,12 @@ $i18n = [
 A simple stub of PHP's built-in [`error_log`](https://www.php.net/manual/en/function.error-log.php) function is provided. Use namespaces to override the native function, add something like this to the top of your test files:
 
 ```php
-Test\Stubs::init();
+IdeasOnPurpose\WP\Test\Stubs::init();
 
 if (!function_exists(__NAMESPACE__ . '\error_log')) {
     function error_log($err)
     {
-        Test\Stubs::error_log($err);
+        IdeasOnPurpose\WP\Test\Stubs::error_log($err);
     }
 }
 ```
@@ -94,6 +94,15 @@ Every call to error_log will append the logged content as a string to the global
         $this->assertStringContainsString("needle", $error_log);
     }
 ```
+
+## Layout
+
+`IdeasOnPurpose\WP\Test\Stubs::init()` loads the stubs. It does not need a new `require` when a file is added.
+
+- `src/Fixtures/classes/` is one WordPress class per file. `WP_REST_Controller` is loaded before the others because `WP_REST_Posts_Controller` extends it.
+- `src/Fixtures/*.php` groups functions by subject (`hooks.php`, `posts.php`, `urls.php`, and so on).
+
+To add a stub, put the function in the matching subject file, or add a class file under `classes/`. `is_wp_error()` lives in `classes/WP_Error.php`, not with the other `is_*` functions.
 
 ## Local Development
 

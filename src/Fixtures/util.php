@@ -1,6 +1,10 @@
 <?php
 
 /**
+ * Generic utility stubs.
+ */
+
+/**
  * @link https://developer.wordpress.org/reference/functions/wp_list_pluck/
  */
 function wp_list_pluck(array $input_list, int|string $field, int|string|null $index_key = null): array

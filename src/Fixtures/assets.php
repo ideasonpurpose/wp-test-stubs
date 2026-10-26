@@ -67,3 +67,14 @@ function wp_localize_script($handle, $object_name, $l10n)
     $localized = $localized ?? [];
     $localized[$handle] = [$object_name => $l10n];
 }
+
+/**
+ * @link https://developer.wordpress.org/reference/functions/wp_add_inline_style/
+ */
+function wp_add_inline_style($handle, $data)
+{
+    global $inline_styles;
+
+    $inline_styles = $inline_styles ?? [];
+    $inline_styles[] = ['handle' => $handle, 'data' => $data];
+}

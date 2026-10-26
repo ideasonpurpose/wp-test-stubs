@@ -24,7 +24,7 @@ $is_ = [
     'is_search',
     'is_single',
     'is_user_logged_in',
-    // 'is_wp_error', // Moved to classes with WP_ERROR
+    // 'is_wp_error', // Defined in classes/WP_Error.php
     'wp_is_json_request',
 ];
 foreach ($is_ as $func) {

@@ -15,3 +15,7 @@ if (!defined('DAY_IN_SECONDS')) {
 if (!defined('WEEK_IN_SECONDS')) {
     define('WEEK_IN_SECONDS', 7 * MINUTE_IN_SECONDS);
 }
+
+if (!defined('JPEG_QUALITY')) {
+    define('JPEG_QUALITY', 77);
+}

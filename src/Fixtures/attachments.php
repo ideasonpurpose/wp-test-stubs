@@ -36,3 +36,42 @@ function wp_get_attachment_metadata(int $attachment_id, bool $unfiltered = false
     global $attachment_metadata;
     return $attachment_metadata ?? false;
 }
+
+/**
+ * @link https://developer.wordpress.org/reference/functions/wp_get_original_image_path/
+ * @param int $attachment_id
+ * @param bool $unfiltered
+ * @return string|false
+ */
+function wp_get_original_image_path(int $attachment_id, bool $unfiltered = false): string|false
+{
+    global $original_image_path;
+    return $original_image_path ?? false;
+}
+
+/**
+ * @link https://developer.wordpress.org/reference/functions/wp_upload_dir/
+ */
+function wp_upload_dir()
+{
+    global $wp_upload_dir;
+    return $wp_upload_dir ?? [
+        'path' => '/www/html/wp-content/uploads/2025/02',
+        'url' => 'http://example.com/wp-content/uploads/2025/02',
+        'subdir' => '/2025/02',
+        'basedir' => '/www/html/wp-content/uploads',
+        'baseurl' => 'http://example.com/wp-content/uploads',
+        'error' => false,
+    ];
+}
+
+function wp_get_image_editor()
+{
+    global $wp_get_image_editor;
+    return $wp_get_image_editor;
+}
+
+/**
+ * @link https://developer.wordpress.org/reference/functions/update_attached_file/
+ */
+function update_attached_file() {}

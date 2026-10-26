@@ -24,3 +24,32 @@ function plugin_basename()
     global $plugin_basename;
     return $plugin_basename ?? 'mock-dir/plugin.php';
 }
+
+/**
+ * @link https://developer.wordpress.org/reference/functions/register_activation_hook/
+ */
+function register_activation_hook($file, $callback)
+{
+    global $activation_hooks;
+    $activation_hooks = $activation_hooks ?? [];
+    $activation_hooks[] = ['hook' => 'activation', 'file' => $file, 'callback' => $callback];
+}
+
+/**
+ * @link https://developer.wordpress.org/reference/functions/register_deactivation_hook/
+ */
+function register_deactivation_hook($file, $callback)
+{
+    global $activation_hooks;
+    $activation_hooks = $activation_hooks ?? [];
+    $activation_hooks[] = ['hook' => 'deactivation', 'file' => $file, 'callback' => $callback];
+}
+
+/**
+ * @link https://developer.wordpress.org/reference/functions/wp_get_environment_type/
+ */
+function wp_get_environment_type()
+{
+    global $wp_get_environment_type;
+    return $wp_get_environment_type ?? 'production';
+}
