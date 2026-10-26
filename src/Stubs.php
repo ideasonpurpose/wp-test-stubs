@@ -41,6 +41,7 @@ class Stubs
         require_once "$fixtures/hooks.php";
         require_once "$fixtures/i18n.php";
         require_once "$fixtures/is_.php";
+        require_once "$fixtures/nav_menu.php";
         require_once "$fixtures/plugin.php";
         require_once "$fixtures/query_var.php";
         require_once "$fixtures/screen.php";
