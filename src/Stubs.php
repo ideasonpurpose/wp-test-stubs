@@ -64,6 +64,7 @@ class Stubs
     public static function error_log($err)
     {
         global $error_log;
-        $error_log = "{(string) $error_log}\n{$err}";
+        $previous = (string) $error_log;
+        $error_log = $previous === '' ? (string) $err : "{$previous}\n{$err}";
     }
 }
