@@ -15,7 +15,7 @@ class WP_Admin_Bar
     }
     public function get_node($key)
     {
-        return (object) $this->nodes[$key] ?? false;
+        return $this->nodes[$key] ?? false;
         //  ['id' => 'my-account', 'title' => 'Howdy, Stella'];
     }
 }
