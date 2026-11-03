@@ -23,11 +23,11 @@ function post_type_supports($post_type, $feature)
 /**
  * @link https://developer.wordpress.org/reference/functions/add_post_type_support/
  */
-function add_post_type_support($post_type, $feature, $args)
+function add_post_type_support($post_type, $feature, ...$args)
 {
     global $post_type_support;
     $post_type_support = $post_type_support ?? [];
-    $post_type_support[] = ['add' => $feature, 'post_type' => $post_type, $args => $args];
+    $post_type_support[] = ['add' => $feature, 'post_type' => $post_type, 'args' => $args];
 }
 
 /**
@@ -104,11 +104,10 @@ function get_post($post = null, $output = 'OBJECT', $filter = 'raw')
 {
     global $get_post;
 
-    return (is_array($get_post)
-        ? array_shift($get_post)
-        : (is_object($post)
-            ? $post
-            : $get_post)) ?? false;
+    return (
+        (is_array($get_post) ? array_shift($get_post) : (is_object($post) ? $post : $get_post)) ??
+        false
+    );
 }
 
 /**
@@ -132,5 +131,5 @@ function get_posts(?array $args = null): array
 function get_post_type($post = null): string|false
 {
     global $post_type;
-    return $post_type ?? ($post->post_type ?? false);
+    return $post_type ?? $post->post_type ?? false;
 }
