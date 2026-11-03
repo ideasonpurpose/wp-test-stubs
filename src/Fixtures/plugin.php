@@ -17,6 +17,15 @@ function get_plugin_data()
 }
 
 /**
+ * @link https://developer.wordpress.org/reference/functions/get_plugins/
+ */
+function get_plugins($plugin_folder = '')
+{
+    global $plugins;
+    return $plugins ?? [];
+}
+
+/**
  * @link https://developer.wordpress.org/reference/functions/plugin_basename/
  */
 function plugin_basename()
@@ -43,13 +52,4 @@ function register_deactivation_hook($file, $callback)
     global $activation_hooks;
     $activation_hooks = $activation_hooks ?? [];
     $activation_hooks[] = ['hook' => 'deactivation', 'file' => $file, 'callback' => $callback];
-}
-
-/**
- * @link https://developer.wordpress.org/reference/functions/wp_get_environment_type/
- */
-function wp_get_environment_type()
-{
-    global $wp_get_environment_type;
-    return $wp_get_environment_type ?? 'production';
 }

@@ -12,3 +12,12 @@ function wp_list_pluck(array $input_list, int|string $field, int|string|null $in
     global $wp_list_pluck;
     return is_array($wp_list_pluck) ? $wp_list_pluck : [];
 }
+
+/**
+ * @link https://developer.wordpress.org/reference/functions/wp_get_environment_type/
+ */
+function wp_get_environment_type()
+{
+    global $wp_get_environment_type;
+    return $wp_get_environment_type ?? 'production';
+}
