@@ -59,3 +59,32 @@ function wp_get_theme()
     global $wp_get_theme;
     return $wp_get_theme ?? new WP_Theme();
 }
+
+/**
+ * Records calls in the global $theme_support array.
+ *
+ * @global array $theme_support
+ * @return void
+ * @link https://developer.wordpress.org/reference/functions/add_theme_support/
+ */
+function add_theme_support($feature, ...$args)
+{
+    global $theme_support;
+    $theme_support = $theme_support ?? [];
+    $theme_support[] = ['add' => $feature, 'args' => $args];
+}
+
+/**
+ * Records calls in the global $theme_support array.
+ *
+ * @global array $theme_support
+ * @return bool Always true
+ * @link https://developer.wordpress.org/reference/functions/remove_theme_support/
+ */
+function remove_theme_support($feature)
+{
+    global $theme_support;
+    $theme_support = $theme_support ?? [];
+    $theme_support[] = ['remove' => $feature];
+    return true;
+}
